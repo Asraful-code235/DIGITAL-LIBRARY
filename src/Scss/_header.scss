@@ -22,6 +22,9 @@
             font-weight: 500;
             font-size: 1rem;
             margin-left: 10px;
+            font-family: 'Kaushan Script',
+                cursive;
+            letter-spacing: 2px;
 
             span {
                 color: cornflowerblue;
@@ -140,12 +143,8 @@
     .nav-menu {
         .sign-up {
             padding: 7px 14px;
-            background: linear-gradient(to right, lime, rgba(41, 216, 164, 0.7));
-            border-radius: 15px;
-            -webkit-border-radius: 15px;
-            -moz-border-radius: 15px;
-            -ms-border-radius: 15px;
-            -o-border-radius: 15px;
+            background: #1e7b85;
+            border-radius: 4px;
             color: #fff;
         }
 

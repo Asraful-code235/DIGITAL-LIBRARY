@@ -21,8 +21,7 @@ function LatestCategory() {
     formdata.append("category", category);
     formdata.append("price", price);
     formdata.append("myfile", input.profilePic, input.profilePic.name);
-
-    // formdata.append("mypdf", file.pdf, file.pdf.name);
+    formdata.append("myPdf", newFile.pdf, newFile.pdf.name);
     console.log(formdata);
 
     axios.post("http://localhost:3001/create", formdata).then((res) => {
@@ -41,11 +40,11 @@ function LatestCategory() {
     console.log(e.target.files[0]);
     setInput({ ...input, profilePic: e.target.files[0] });
   };
-  // const [newFile, setFile] = useState({ profilePdf: "" });
-  // const pdfUpload = (e) => {
-  //   setFile({ ...newFile, pdf: e.target.files[0] });
-  //   console.log(e.target.files[0]);
-  // };
+  const [newFile, setFile] = useState({ profilePdf: "" });
+  const pdfUpload = (e) => {
+    setFile({ ...newFile, pdf: e.target.files[0] });
+    console.log(e.target.files[0]);
+  };
   // const [register, handelSubmit] = useState();
   // const onsubmit = (data) => {
   //   const formData = new FormData();
@@ -123,27 +122,33 @@ function LatestCategory() {
               }}
             />
           </p>
+
           <div className="Dashboard_crud">
             <label htmlFor="">Image</label>
             <input
               type="file"
               name="myfile"
               id="name"
+              required
               autoComplete="off"
               onChange={imageUpload}
             />
           </div>
           <div className="Dashboard_crud">
-            <form className="Dashboard_crud">
-              <label htmlFor="">Pdf</label>
-              <input type="file" name="myPdf" autoComplete="off" />
-              <button className="submit">Pdf Submit</button>
-            </form>
+            <label htmlFor="">Pdf</label>
+            <input
+              type="file"
+              name="myPdf"
+              required
+              autoComplete="off"
+              onChange={pdfUpload}
+            />
+            {/* <button className="submit">Pdf Submit</button> */}
           </div>
-
           <button type="submit" className="submit" onClick={addBooks}>
             Add
           </button>
+
           {/* <div>
             {bookList.map((val) => {
               return (

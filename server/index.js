@@ -11,11 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/public", express.static("public"));
 app.use("/public/images", express.static("public/images"));
-// app.use(
-//   fileUpload({
-//     createParentPath: true,
-//   })
-// );
+app.use(fileUpload());
 // app.use(morgan("dev"));
 // app.use(express.urlencoded({ extended: true }));
 const storage = multer.diskStorage({
@@ -53,15 +49,10 @@ const fileFilter = (req, file, cb) => {
   }
 };
 var upload = multer({ storage: storage });
-
-app.post("/upload", (req, res) => {
-  upload(req, res, (err) => {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).send(req.file);
-  });
-});
+var uploadMultiple = upload.fields([
+  { name: "myfile", maxCount: 2 },
+  { name: "myPdf", maxCount: 2 },
+]);
 
 const db = mysql.createConnection({
   user: "root",
@@ -75,16 +66,17 @@ db.connect(function (err) {
   }
   console.log("connected");
 });
-app.post("/create", upload.single("myfile"), (req, res) => {
+// upload.single("myfile"),
+app.post("/create", uploadMultiple, (req, res) => {
   const title = req.body.title;
   const author = req.body.author;
   const category = req.body.category;
   const price = req.body.price;
-  const image = req.file.filename;
-  // const pdf = req.file.filename;
+  const image = req.files[0].filename;
+  const pdf = req.files[0].filename;
   db.query(
-    "INSERT INTO books (title, author,category, price,image) VALUES(?,?,?,?,?)",
-    [title, author, category, price, image],
+    "INSERT INTO books (title, author,category, price,image,pdf) VALUES(?,?,?,?,?,?)",
+    [title, author, category, price, image, pdf],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -130,6 +122,16 @@ app.get("/books", (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      res.send(result);
+    }
+  });
+});
+app.get(`/Books/:id`, (req, res) => {
+  db.query("SELECT * FROM books where id= ?", req.params.id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
       res.send(result);
     }
   });

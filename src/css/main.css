@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;0,700;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Festive&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Kaushan+Script&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +13,7 @@ body {
   margin: 0 auto;
   letter-spacing: 1px;
   line-height: 1.5;
-  background: rgba(230, 247, 255, 0.5);
+  background: #fafbfd;
 }
 
 ::-webkit-scrollbar {
@@ -76,6 +78,8 @@ li {
   font-weight: 500;
   font-size: 1rem;
   margin-left: 10px;
+  font-family: 'Kaushan Script', cursive;
+  letter-spacing: 2px;
 }
 
 .NavbarItems .menu-icon .navbar-logo span {
@@ -181,12 +185,8 @@ li {
 
 .NavbarItems .nav-menu .sign-up {
   padding: 7px 14px;
-  background: linear-gradient(to right, lime, rgba(41, 216, 164, 0.7));
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  background: #1e7b85;
+  border-radius: 4px;
   color: #fff;
 }
 
@@ -312,7 +312,7 @@ li {
   box-sizing: border-box;
   padding: 20px 20px 0;
   border: 1px solid #DCDEE3;
-  background: #fff;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.7));
   align-items: center;
   position: relative;
   height: 420px;
@@ -773,6 +773,76 @@ img {
   margin-top: 2px;
 }
 
+.info-container {
+  margin-top: 40px;
+  background: #ffffff;
+  align-items: center;
+  text-align: center;
+  padding: 20px 48px;
+}
+
+.info-container h1 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #000514;
+  text-align: center;
+}
+
+.info-container .info-grid {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+}
+
+.info-container .info-grid .container {
+  padding: 10px 30px;
+  font-size: 28px;
+  height: 123px;
+  width: 148px;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-container .info-grid .container > p {
+  font-size: 16px;
+  font-weight: 400;
+  padding-top: 16px;
+}
+
+.linkToBooks-container {
+  width: 100%;
+  height: 600px;
+  background: #1e7b85;
+}
+
+.linkToBooks-container .info-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: center;
+  padding: 40px 0;
+  margin-left: 60px;
+}
+
+.linkToBooks-container .info-wrap h1 {
+  color: #fff;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.linkToBooks-container .info-wrap img {
+  width: 800px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
 .latestCategory {
   width: 100%;
   margin: 0 auto;
@@ -888,27 +958,60 @@ img {
   width: 100%;
 }
 
+.book {
+  width: 400px;
+  height: 400px;
+  border: 2px solid red;
+}
+
 .ImageGrid {
   background: #fff;
-  width: 98%;
-  min-height: 400px;
+  width: 80%;
   margin: 0 auto;
   margin-top: 60px;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  border-radius: 5px;
 }
 
 .ImageGrid .control {
-  height: 40px;
+  height: 45px;
   width: 100%;
+  margin: 0 auto;
   position: relative;
+  margin-bottom: 10px;
+  margin-left: 4px;
 }
 
-.ImageGrid .control li:not(:last-child):hover {
-  border-bottom: 2px solid coral;
+.ImageGrid .control ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.ImageGrid .control li {
+  display: inline;
+  padding: 0px 10px;
+  font-size: 14px;
+  position: relative;
+  transition: all 300ms ease-in-out;
+}
+
+.ImageGrid .control li:nth-child(n):hover {
+  color: #6a244d;
+  font-weight: 500;
+}
+
+.ImageGrid .control .defaultActive::after {
+  position: absolute;
+  bottom: -5px;
+  left: 0%;
+  right: 0%;
+  margin: 0 auto;
+  width: 75%;
+  content: '';
+  background: #6a244d;
+  height: 2px;
 }
 
 .ImageGrid .control .category-books-items {
@@ -935,12 +1038,7 @@ img {
 }
 
 .ImageGrid .control .category-books-items.active li:hover {
-  font-weight: 700;
-}
-
-.ImageGrid .control .category-books-items.active li:not(:last-child) {
-  border-bottom: 2px solid #222;
-  width: 100%;
+  color: #6a244d;
 }
 
 .ImageGrid .control .category-books {
@@ -948,8 +1046,7 @@ img {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: coral;
-  color: #fff;
+  color: #000514;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -959,7 +1056,7 @@ img {
 }
 
 .ImageGrid .control .category-books li {
-  color: #fff;
+  color: #000514;
 }
 
 .ImageGrid .control .category-books .img {
@@ -973,49 +1070,25 @@ img {
   border-bottom: 2px solid coral;
 }
 
-.ImageGrid .control ul {
+.ImageGrid .GridContainer {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-}
-
-.ImageGrid .control li {
-  list-style-type: none;
-  padding: 4px 10px;
-  color: #222;
-}
-
-.ImageGrid .control li:not(:last-child) {
-  margin-right: 10px;
-}
-
-.ImageGrid .GridContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  flex-flow: wrap;
   justify-content: center;
-  padding: 5px;
-  grid-gap: 2;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
+  align-items: flex-start;
+  text-align: center;
 }
 
 .ImageGrid .GridContainer .containerBooks {
   position: relative;
-  padding: 9px;
-  height: 480px;
+  width: 130px;
+  height: 220px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   text-align: center;
   align-items: flex-start;
-  padding: 5px;
-  margin: 5px;
   border: none;
-  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -1026,6 +1099,7 @@ img {
   -moz-transition: all 100ms ease-in;
   -ms-transition: all 100ms ease-in;
   -o-transition: all 100ms ease-in;
+  margin: 4px;
 }
 
 .ImageGrid .GridContainer .containerBooks:hover {
@@ -1041,61 +1115,17 @@ img {
 .ImageGrid .GridContainer .containerBooks .imgContainer {
   margin-bottom: 2px;
   width: 100%;
+  height: 150px;
   position: relative;
   text-align: center;
   align-items: center;
-  padding: 20px 0 0 0;
-  margin-bottom: 5px;
-}
-
-.ImageGrid .GridContainer .containerBooks .imgContainer .book-grid {
-  z-index: 2;
-  position: relative;
-  transform: translateY(-16px);
-  -webkit-transform: translateY(-16px);
-  -moz-transform: translateY(-16px);
-  -ms-transform: translateY(-16px);
-  -o-transform: translateY(-16px);
 }
 
 .ImageGrid .GridContainer .containerBooks .imgContainer img {
   display: block;
-  box-shadow: 0px -4px 15px 2px rgba(0, 0, 0, 0.5);
-  width: 200px;
-  height: 250px;
+  width: 100%;
+  height: 150px;
   object-fit: cover;
-  align-items: center;
-  margin-left: 35px;
-}
-
-.ImageGrid .GridContainer .containerBooks .imgContainer .shelf-shadows {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1rem;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  z-index: 1;
-  box-shadow: 0px -5px 3px 0px rgba(170, 170, 170, 0.2), 0px 15px 20px 0px rgba(170, 170, 170, 0.7), 0px 5px 5px 0px rgba(119, 119, 119, 0.3);
-}
-
-.ImageGrid .GridContainer .containerBooks .imgContainer .shelf {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1rem;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  z-index: 3;
-  color: #f9f9f9;
 }
 
 .ImageGrid .GridContainer .containerBooks .info {
@@ -1103,18 +1133,23 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 15px;
 }
 
-.ImageGrid .GridContainer .containerBooks h1 {
-  font-size: 1.1rem;
+.ImageGrid .GridContainer .containerBooks .header {
+  width: 100%;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+.ImageGrid .GridContainer .containerBooks .header h1 {
+  font-size: 11.5px;
   font-weight: 600;
-  margin-bottom: 2px;
   text-align: start;
+  color: #222;
 }
 
 .ImageGrid .GridContainer .containerBooks p {
-  font-size: 0.80rem;
+  font-size: 10px;
   font-weight: 400;
   color: rgba(58, 51, 51, 0.55);
   margin-bottom: 2px;
@@ -1122,7 +1157,7 @@ img {
 }
 
 .ImageGrid .GridContainer .containerBooks h4 {
-  font-size: 0.90rem;
+  font-size: 12px;
   font-weight: 600;
   color: rgba(58, 51, 51, 0.78);
   margin-bottom: 2px;
@@ -1220,59 +1255,80 @@ img {
 }
 
 .Footer-container {
-  background-color: rgba(0, 0, 0, 0.85);
-  margin-top: 80px;
+  background: #e3e6ef;
+  margin-top: 0px;
   width: 100%;
   padding: 10px;
-  display: flex;
-  color: #fff;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: center;
 }
 
 .Footer-container .Footer-info {
-  margin-left: 60px;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+  position: relative;
+}
+
+.Footer-container .Footer-info::after {
+  position: absolute;
+  bottom: -5px;
+  left: 0%;
+  right: 0%;
+  margin: 0 auto;
+  width: 88%;
+  content: '';
+  background: #b7bdc9;
+  height: 1px;
 }
 
 .Footer-container .Footer-info ul {
-  border: 0.2px solid #fff;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-  align-items: flex-start;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  background: rgba(0, 0, 0, 0.25);
+  padding: 20px 40px;
+}
+
+.Footer-container .Footer-info ul h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .Footer-container .Footer-info ul li {
-  padding: 5px;
+  font-size: 12px;
+  font-weight: 300;
 }
 
-.Footer-container .licence {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-left: 80px;
-}
-
-.Footer-container .licence .icons-container {
-  padding: 10px;
+.Footer-container .Footer-info .social-link {
+  padding: 4px 0;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  text-align: center;
+  align-items: center;
 }
 
-.Footer-container .licence .facebook-icon,
-.Footer-container .licence .linkedin-icon,
-.Footer-container .licence .twitter-icon {
-  padding: 10px;
+.Footer-container .Footer-info .social-link li {
+  padding: 0px 0px 0px 6px;
+}
+
+.Footer-container .Footer-info .social li {
+  text-align: center;
+  align-items: center;
+}
+
+.Footer-container .copyright {
+  margin-top: 16px;
+  margin-left: 75px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Footer-container .copyright h3 {
+  padding: 0px 24px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: 300;
 }
 
 .text-primary-p {
@@ -1778,5 +1834,62 @@ main .card4 {
   padding: 10px;
   font-size: 18px;
   color: #a5aaad;
+}
+
+.books-container {
+  margin-top: 2px;
+  width: 100%;
+  height: 300px;
+  padding: 0;
+  border: 1px solid transparent;
+  background-image: url("../images/bookpic1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.books-container .books-info {
+  margin-left: 240px;
+  align-items: center;
+  text-align: start;
+  margin-top: 90px;
+  width: 800px;
+  background: rgba(255, 255, 255, 0.155);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 5px 25px rgba(37, 36, 36, 0.5);
+}
+
+.books-container .books-info h1 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3em;
+  color: rgba(3, 3, 3, 0.8);
+}
+
+.books-container .books-info p {
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1.3em;
+  color: #Fdfdfd;
+  opacity: 0.8;
+}
+
+.books-container .btn-subscribe {
+  margin-top: 16px;
+  padding: 12px 34px;
+  background: #1e7b85;
+  color: #fff;
+  border: 1px solid #1e7b85;
+  border-radius: 4px;
+  line-height: 1.3em;
+  font-weight: 600;
+  opacity: 0.8;
+  transition: all 300ms ease-in-out;
+}
+
+.books-container .btn-subscribe:hover {
+  font-weight: 700;
+  opacity: 1;
 }
 /*# sourceMappingURL=main.css.map */

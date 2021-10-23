@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { AiTwotoneDelete } from "react-icons/ai";
-import { FaFileDownload } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { MdUpdate } from "react-icons/md";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 function ItemsShow() {
   useEffect(() => {
     Aos.init({ duration: 1500 });
@@ -113,39 +111,105 @@ function ItemsShow() {
         );
       });
   };
-  // const handelDownload = (id) => {
-  //   axios
-  //     .get({
-  //       url: "http://localhost:3001/public/images",
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       // var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-  //       // var fileLink = document.createElement("a");
-
-  //       // fileLink.href = fileURL;
-  //       // fileLink.setAttribute("download", "file.pdf");
-  //       // document.body.appendChild(fileLink);
-  //       // fileLink.click();
-  //     });
-  // };
   const [isActiveDd, setActiveDd] = useState(false);
   const handelDropdown = () => {
     setActiveDd(!isActiveDd);
-    console.log("clicked");
+    if (isActiveDd == true) {
+      setActiveDd(isActiveDd);
+    }
   };
+  const [linkActive, setLinkActive] = useState(false);
+  const handelLink = (e) => {
+    if (linkActive == false && linkAct == true && isActiveDd == true) {
+      setLinkActive(linkActive);
+      setLinkAct(!linkAct);
+      // setActiveDd(isActiveDd);
+
+      // console.log("!linkactive and linkact");
+    } else if (linkAct == true && linkActive == true && isActiveDd == true) {
+      setLinkActive(!linkActive);
+      setLinkAct(!linkAct);
+      setActiveDd(!isActiveDd);
+
+      // console.log("linkact true");
+    } else if (linkActive == false && linkAct == false && linkAc == false) {
+      // console.log("false");
+    } else if (linkActive == true && linkAc == true) {
+      setLinkActive(!linkActive);
+      setLinkAc(!linkAc);
+    }
+
+    // setLinkActive(!linkActive);
+    // setLinkAct(!linkAct);
+    // setLinkAc(!linkAc);
+
+    // console.log(e.target.className);
+  };
+  const [linkAct, setLinkAct] = useState(false);
+  const handelSecond = () => {
+    if (linkAct == false && linkActive == false) {
+      setLinkAct(!linkAct);
+      setLinkActive(!linkActive);
+      // setLinkAc(!linkAc);
+      // console.log("!linkact and !linkactive");
+    } else if (linkAct == true && linkAc == true) {
+      setLinkAct(linkAct);
+      setLinkAc(!linkAc);
+      // console.log("linkact");
+    } else if (linkAct == false && linkAc == true) {
+      setLinkAct(!linkAct);
+      setLinkAc(!linkAc);
+      // console.log("k");
+    }
+    // setLinkActive(!linkActive);
+    // setLinkAct(!linkAct);
+    // setLinkActive(!linkActive);
+    // setLinkAc(!linkAc);
+    // console.log(e.target.className);
+  };
+  const [linkAc, setLinkAc] = useState(false);
+  const handelThird = () => {
+    if (linkActive == false && linkAc == false) {
+      setLinkAc(!linkAc);
+      setLinkActive(!linkActive);
+      // setActiveDd(isActiveDd);
+
+      // console.log("works");
+    } else if (linkAct == true && linkAc == false && isActiveDd == true) {
+      // console.log("nice");
+      setLinkAct(!linkAct);
+      setLinkAc(!linkAc);
+      setActiveDd(!isActiveDd);
+    }
+  };
+  getBooks();
   return (
-    <section data-aos="fade-up" className="ImageGrid" onMouseEnter={getBooks}>
+    <section data-aos="fade-up" className="ImageGrid">
       <div className="control">
         <ul>
-          <li className="all-active">All</li>
-          <li>Latest</li>
+          <li
+            className={`${linkActive ? "" : "defaultActive"}`}
+            onClick={handelLink}
+          >
+            OVERVIEW
+          </li>
           <div className="category-books" onClick={handelDropdown}>
-            <li>Category</li>
+            <li
+              onClick={handelSecond}
+              className={`${!linkAct ? "" : "defaultActive"}`}
+            >
+              CATEGORY
+            </li>
             <div className="img">
               <IoMdArrowDropdown color="#fff" fontSize="1.2rem" />
             </div>
           </div>
+          <li
+            className={`${!linkAc ? "" : "defaultActive"}`}
+            onClick={handelThird}
+          >
+            LATEST
+          </li>
         </ul>
         <ul className={`category-books-items ${isActiveDd ? "active" : ""}`}>
           <li>CSE</li>
@@ -157,22 +221,25 @@ function ItemsShow() {
         {bookList.map((val) => {
           return (
             <div className="containerBooks" key={val.id}>
-              <div className="imgContainer">
-                <div className="book-grid">
-                  <img
-                    src={`http://localhost:3001/public/images/${val.image}`}
-                  />
+              <Link to={`Books/${val.id}`}>
+                <div className="imgContainer">
+                  <div className="book-grid">
+                    <img
+                      src={`http://localhost:3001/public/images/${val.image}`}
+                    />
+                  </div>
+                  {/* <div className="shelf-shadows"></div>
+                <div className="shelf"></div> */}
                 </div>
-                <div className="shelf-shadows"></div>
-                <div className="shelf"></div>
-              </div>
-              <div className="info">
-                <h1>{val.Title}</h1>
-                <p>Author:{val.Author}</p>
-                <p>Category:{val.Category}</p>
-                <h4>Price:{val.Price}$</h4>
-                <div className="btn_container">
-                  {/* <div className="btn">
+                <div className="info">
+                  <div className="header">
+                    <h1>{val.Title}</h1>
+                  </div>
+                  <p>{val.Author}</p>
+                  {/* <p>Category:{val.Category}</p> */}
+                  {/* <h4>Price:{val.Price}$</h4> */}
+                  <div className="btn_container">
+                    {/* <div className="btn">
                     <input
                       type="text"
                       placeholder="New title"
@@ -212,7 +279,7 @@ function ItemsShow() {
                       <MdUpdate color="white" fontSize="1.5em" />
                     </button>
                   </div> */}
-                  {/* <div>
+                    {/* <div>
                     <label htmlFor="">pdf</label>
                     <input
                       type="file"
@@ -225,23 +292,24 @@ function ItemsShow() {
                     />
                     <button onClick={() => updateImage(val.id)}>Update</button>
                   </div> */}
-                  <div className="btnControl">
-                    {/* <button
+                    <div className="btnControl">
+                      {/* <button
                       className="btnDelete"
                       onClick={() => deleteBooks(val.id)}
                     >
                       <AiTwotoneDelete color="#fff" fontSize="1.5em" />
                     </button> */}
-                    <button
+                      {/* <button
                       className="btnDownload"
                       // onClick={() => deleteBooks(val.id)}
                     >
                       <FaFileDownload color="#fff" fontSize="1.5em" />
                       Download
-                    </button>
+                    </button> */}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           );
         })}

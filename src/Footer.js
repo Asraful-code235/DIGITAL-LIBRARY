@@ -7,41 +7,52 @@ function Footer() {
     <div className="Footer-container">
       <div className="Footer-info">
         <ul>
-          <li>Md.Asraful Islam</li>
-          <li>Md.Shoab Nur Asif</li>
-          <li>Md.Masfiqur Rahman</li>
-          <li>Md.Rasel Mahamud</li>
-          <li>Contanct: Shoagasraful@gmail.com</li>
+          <h3>About</h3>
+          <li>About Digital Library</li>
+          <li>Join us</li>
+          <li>Contact us</li>
+        </ul>
+        <ul>
+          <h3>Support</h3>
+          <li>Help/FAQ</li>
+          <li>Accessibility</li>
+          <li>Publishers</li>
+        </ul>
+        <ul>
+          <h3>Legal</h3>
+          <li>Terms</li>
+          <li>Privacy</li>
+          <li>Copyright</li>
+        </ul>
+        <ul>
+          <h3 className="social">Social</h3>
+          <div className="social-link">
+            <FaFacebookSquare
+              className="fa-icon"
+              color="#222"
+              fontSize="14px"
+            />
+            <li>Facebook</li>
+          </div>
+          <div className="social-link">
+            <FaTwitter className="fa-icon" color="#222" fontSize="14px" />
+
+            <li>Twitter</li>
+          </div>
+          <div className="social-link">
+            <FaLinkedin
+              className="fa-icon"
+              margin="10px"
+              color="#222"
+              fontSize="14px"
+            />
+            <li>LinkedIn</li>
+          </div>
         </ul>
       </div>
-      <div className="licence">
-        <div className="icons-container">
-          <div className="facebook-icon">
-            <a href="#">
-              <FaFacebookSquare
-                className="fa-icon"
-                color="#fff"
-                fontSize="1.5rem"
-              />
-            </a>
-          </div>
-          <div className="linkedin-icon">
-            <a href="#">
-              <FaLinkedin
-                className="fa-icon"
-                margin="10px"
-                color="#fff"
-                fontSize="1.5rem"
-              />
-            </a>
-          </div>
-          <div className="twitter-icon">
-            <a href="#">
-              <FaTwitter className="fa-icon" color="#fff" fontSize="1.5rem" />
-            </a>
-          </div>
-        </div>
-        <h3>Copyright @ 2021</h3>
+      <div className="copyright">
+        <h3>Language:English</h3>
+        <h3>Copyright &copy; 2021 Digital Library lnc.</h3>
       </div>
     </div>
   );

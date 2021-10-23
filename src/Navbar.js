@@ -6,13 +6,14 @@ function Navbar() {
   return (
     <>
       <nav className="NavbarItems">
-        <div className="menu-icon">
-          <img src="./women.PNG" alt="" />
-          <h1 className="navbar-logo">
-            DIGITAL <span>Library</span>
-          </h1>
-        </div>
-
+        <Link to={"/"}>
+          <div className="menu-icon">
+            <img src="./women.PNG" alt="" />
+            <h1 className="navbar-logo">
+              DIGITAL <span>Library</span>
+            </h1>
+          </div>
+        </Link>
         <ul className="nav-menu">
           {items.map((item) => {
             return (
