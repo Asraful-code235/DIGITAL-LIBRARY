@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import { sliderInfo } from "./slider";
 import { categoryRight } from "./CategoryRight";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import FrontendInfo from "./FrontendInfo";
 
 function Hero() {
   useEffect(() => {
@@ -13,21 +14,24 @@ function Hero() {
   }, []);
 
   return (
-    <section className="hero">
-      <div data-aos="fade-up" className="first-screen">
-        <div className="first-floor">
-          <div className="img-container">
-            <img src="./optimized-11.png" alt="" />
-          </div>
-          <div className="col-left">
-            <div data-aos="fade-up" className="home-category">
-              <Component1 />
+    <>
+      <section className="hero">
+        <div data-aos="fade-up" className="first-screen">
+          <div className="first-floor">
+            <div className="img-container">
+              <img src="./optimized-11.png" alt="" />
             </div>
+            <div className="col-left">
+              <div data-aos="fade-up" className="home-category">
+                <Component1 />
+              </div>
+            </div>
+            <Component3 />
           </div>
-          <Component3 />
         </div>
-      </div>
-    </section>
+      </section>
+      <FrontendInfo />
+    </>
   );
 }
 
