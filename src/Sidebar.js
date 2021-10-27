@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import mobile from "./images/mobile.PNG";
+
 import { Link } from "react-router-dom";
 
 function Sidebar({ sidebarOpen, closeSidebar }) {
@@ -23,7 +23,7 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
       </div>
 
       <div className="sidebar_menu">
-        <Link to="/Dashboard">
+        <Link to={"/Dashboard"}>
           <div className="sidebar_link active_menu_link">
             <i className="fa fa-home"></i>
             <a href="#">Dashboard</a>
@@ -33,11 +33,13 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
           <i className="fa fa-user-secret"></i>
           <a href="#">Admin Management</a>
         </div>
-        <div className="sidebar_link">
-          <i className="fa fa-building-o"></i>
-          <a href="#">Library Management</a>
-        </div>
-        <Link to="/Dashboard/Book_Management">
+        <Link to={"/Dashboard/LibraryManagement"}>
+          <div className="sidebar_link">
+            <i className="fa fa-building-o"></i>
+            <a href="#">Library Management</a>
+          </div>
+        </Link>
+        <Link to={"/Dashboard/BookManagement"}>
           <div
             className={`sidebar_link ${menuActive ? "active_menu_link" : " "}`}
             onClick={() => handelColor}

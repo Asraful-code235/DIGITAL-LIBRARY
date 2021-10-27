@@ -19,7 +19,7 @@ function Hero() {
         <div data-aos="fade-up" className="first-screen">
           <div className="first-floor">
             <div className="img-container">
-              <img src="./optimized-11.png" alt="" />
+              {/* <img src="./optimized-11.png" alt="" /> */}
             </div>
             <div className="col-left">
               <div data-aos="fade-up" className="home-category">
@@ -36,9 +36,6 @@ function Hero() {
 }
 
 const Component1 = () => {
-  const [isBlock, setBlock] = useState(false);
-  const [isActive, setActive] = useState(false);
-  const [isHover, setHover] = useState(false);
   return (
     <>
       <div className="category-left">
@@ -49,11 +46,10 @@ const Component1 = () => {
         <div className="left-market">
           <div
             id="FirstUnique"
-            className={`link ${isActive ? "activate" : ""}`}
+            className={`link `}
             onMouseEnter={() => {
               const l = document.getElementById("FirstUnique");
               const v = document.getElementById("Unique");
-              const c = document.getElementById("thirdUnique");
               l.addEventListener("mouseover", () => {
                 v.classList.add("block");
                 l.classList.add("activate");
@@ -81,10 +77,7 @@ const Component1 = () => {
             }}
           >
             <a href="#">
-              <div
-                id="thirdUnique"
-                className={`category-item ${isHover ? "Active" : ""}`}
-              >
+              <div id="thirdUnique" className={`category-item `}>
                 <div>
                   <span className="img">
                     <img
@@ -101,7 +94,7 @@ const Component1 = () => {
         </div>
       </div>
       <div className="category-right">
-        <div id="Unique" className={`category-list ${isBlock ? "block" : " "}`}>
+        <div id="Unique" className={`category-list`}>
           {categoryRight.map((prop) => {
             return (
               <div key={prop.id} className={prop.closed}>
@@ -110,16 +103,16 @@ const Component1 = () => {
                     <h3 className="h3">{prop.txt}</h3>
                     <ul>
                       <li>
-                        <a href="">{prop.item1}</a>
+                        <a href="#">{prop.item1}</a>
                       </li>
                       <li>
-                        <a href="">{prop.item2}</a>
+                        <a href="#">{prop.item2}</a>
                       </li>
                       <li>
-                        <a href="">{prop.item3}</a>
+                        <a href="#">{prop.item3}</a>
                       </li>
                       <li>
-                        <a href="">{prop.item4}</a>
+                        <a href="#">{prop.item4}</a>
                       </li>
                     </ul>
                   </div>
@@ -137,17 +130,6 @@ const Component3 = () => {
   return (
     <>
       <div className="col-right">
-        {/* <div className="slider" id="slider">
-          {sliderInfo.map((slides) => {
-            <div key={slides.id} className={slides.cName}>
-              <img src={slides.img} alt="" />
-              <div className="info">
-                <h3>{slides.h3}</h3>
-                <p>{slides.p}</p>
-              </div>
-            </div>;
-          })}
-        </div> */}
         <div className="slider">
           <Splide
             options={{

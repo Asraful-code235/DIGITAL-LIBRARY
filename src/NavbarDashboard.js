@@ -7,7 +7,6 @@ const NavbarDashboard = ({ sidebarOpen, openSidebar }) => {
         <i className="fa fa-bars"></i>
       </div>
       <div className="navbar_left">
-        <a href="#">Home</a>
         <a href="#">Book Management</a>
         <a href="#" className="active_link">
           Admin

@@ -5,10 +5,10 @@ export const items = [
     url: "#",
     cName: "nav-links",
   },
-  {
-    id: 2,
-    title: "Dashboard",
-    url: "#",
-    cName: "nav-links",
-  },
+  // {
+  //   id: 2,
+  //   title: "Dashboard",
+  //   url: "#",
+  //   cName: "nav-links",
+  // },
 ];

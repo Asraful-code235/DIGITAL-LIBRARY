@@ -11,7 +11,11 @@ app.use(cors());
 app.use(express.json());
 app.use("/public", express.static("public"));
 app.use("/public/images", express.static("public/images"));
-app.use(fileUpload());
+// app.use(
+//   fileUpload({
+//     createParentPath: true,
+//   })
+// );
 // app.use(morgan("dev"));
 // app.use(express.urlencoded({ extended: true }));
 const storage = multer.diskStorage({
@@ -49,10 +53,15 @@ const fileFilter = (req, file, cb) => {
   }
 };
 var upload = multer({ storage: storage });
-var uploadMultiple = upload.fields([
-  { name: "myfile", maxCount: 2 },
-  { name: "myPdf", maxCount: 2 },
-]);
+
+app.post("/upload", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
+});
 
 const db = mysql.createConnection({
   user: "root",
@@ -66,17 +75,16 @@ db.connect(function (err) {
   }
   console.log("connected");
 });
-// upload.single("myfile"),
-app.post("/create", uploadMultiple, (req, res) => {
+app.post("/create", upload.single("myfile"), (req, res) => {
   const title = req.body.title;
   const author = req.body.author;
   const category = req.body.category;
   const price = req.body.price;
-  const image = req.files[0].filename;
-  const pdf = req.files[0].filename;
+  const image = req.file.filename;
+  // const pdf = req.file.filename;
   db.query(
-    "INSERT INTO books (title, author,category, price,image,pdf) VALUES(?,?,?,?,?,?)",
-    [title, author, category, price, image, pdf],
+    "INSERT INTO books (title, author,category, price,image) VALUES(?,?,?,?,?)",
+    [title, author, category, price, image],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -86,6 +94,41 @@ app.post("/create", uploadMultiple, (req, res) => {
     }
   );
 });
+app.post("/authentication", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  db.query(
+    "INSERT INTO auth (email, password) VALUES (?, ?)",
+    [email, password],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("value inserted");
+      }
+    }
+  );
+});
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  db.query(
+    "SELECT * FROM auth WHERE email=? AND password=?",
+    [email, password],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      }
+
+      if (result.length > 0) {
+        res.send(result);
+      } else {
+        res.send({ message: "Wrong email/password" });
+      }
+    }
+  );
+});
+
 // app.post("/post", upload.single("myPdf"), (req, res) => {
 //   const pdf = req.file.filename;
 //   // const pdf = req.file.filename;
@@ -135,6 +178,21 @@ app.get(`/Books/:id`, (req, res) => {
       res.send(result);
     }
   });
+});
+app.get(`/Books/:id/:Category`, (req, res) => {
+  db.query(
+    "SELECT * FROM books WHERE Category = 'CSE' ",
+    // req.params.id,
+    req.params.Category,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.send(result);
+      }
+    }
+  );
 });
 
 //updating database

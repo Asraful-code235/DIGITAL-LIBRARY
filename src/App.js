@@ -7,7 +7,9 @@ import Footer from "./Footer";
 import About from "./About";
 import Dashboard from "./Dashboard";
 import ItemDetails from "./ItemDetails";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Signup from "./Signup";
+import ProtectedRoute from "./ProtectedRoute";
 function App() {
   return (
     <Router>
@@ -18,8 +20,11 @@ function App() {
         <Route path="/" exact component={Footer} />
         <Route path="/Books" component={Navbar} />
         <Route path="/Books" exact component={Books} />
-        <Route path="/Books/:id" exact component={ItemDetails} />
+        <Route path="/Books/:id/:category" exact component={ItemDetails} />
         <Route path="/about" exact component={About} />
+
+        <Route path="/login" exact component={Signup} />
+        {/* <Route path="/login" exact component={Login} /> */}
         <Route path="/Dashboard" exact component={Dashboard} />
       </div>
     </Router>

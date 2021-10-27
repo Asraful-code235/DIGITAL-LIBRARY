@@ -11,7 +11,6 @@ function LatestCategory() {
   const [author, setAuthor] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
-  const [bookList, setBookList] = useState([]);
 
   const addBooks = () => {
     // console.log(input.profilePic, "==", input.profilePic.name);
@@ -21,20 +20,17 @@ function LatestCategory() {
     formdata.append("category", category);
     formdata.append("price", price);
     formdata.append("myfile", input.profilePic, input.profilePic.name);
-    formdata.append("myPdf", newFile.pdf, newFile.pdf.name);
-    console.log(formdata);
+    // formdata.append("myPdf", newFile.profilePdf, newFile.profilePdf.name);
+    // console.log("myfile", input.profilePic, input.profilePic.name);
+
+    // console.log(newFile.profilePdf, newFile.profilePdf.name);
 
     axios.post("http://localhost:3001/create", formdata).then((res) => {
       console.log("success");
-      // console.log(formdata.data);
+      // console.log(formdata);
     });
   };
 
-  const getBooks = () => {
-    axios.get("http://localhost:3001/books").then((response) => {
-      setBookList(response.data);
-    });
-  };
   const [input, setInput] = useState({ profilePic: "" });
   const imageUpload = (e) => {
     console.log(e.target.files[0]);
@@ -42,25 +38,13 @@ function LatestCategory() {
   };
   const [newFile, setFile] = useState({ profilePdf: "" });
   const pdfUpload = (e) => {
-    setFile({ ...newFile, pdf: e.target.files[0] });
-    console.log(e.target.files[0]);
+    setFile({ ...newFile, profilePdf: e.target.files[0] });
+    console.log(e.target.files[0].name);
   };
-  // const [register, handelSubmit] = useState();
-  // const onsubmit = (data) => {
-  //   const formData = new FormData();
-  //   formData.append("myPdf", data.myPdf[0]);
-  //   const res = fetch("http://localhost:3001/post", {
-  //     method: "POST",
-  //     body: formData,
-  //   }).then((res) => {
-  //     res.json();
-  //     alert(JSON.stringify(res));
-  //   });
-  // };
 
   return (
     <>
-      <section data-aos="fade-up" className="latestCategory">
+      <section data-aos="fade-down-right" className="latestCategory">
         <div className="container">
           <p className="Field">
             <label htmlFor="">Title</label>
@@ -139,9 +123,9 @@ function LatestCategory() {
             <input
               type="file"
               name="myPdf"
-              required
               autoComplete="off"
               onChange={pdfUpload}
+              required
             />
             {/* <button className="submit">Pdf Submit</button> */}
           </div>
