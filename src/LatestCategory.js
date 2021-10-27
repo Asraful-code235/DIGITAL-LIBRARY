@@ -30,17 +30,45 @@ function LatestCategory() {
       // console.log(formdata);
     });
   };
+  const [PdfTitle, setPdfTitle] = useState("");
+  const [PdfId, setPdfId] = useState(0);
+
+  const [newFile, setFile] = useState({ profilePdf: "" });
+  const pdfUpload = (e) => {
+    setFile({ ...newFile, profilePdf: e.target.files[0] });
+    console.log(e.target.files[0]);
+  };
+  const addPdfs = () => {
+    // console.log(input.profilePic, "==", input.profilePic.name);
+    const formdata = new FormData();
+    formdata.append("title", PdfTitle);
+    formdata.append("id", PdfId);
+    // formdata.append("category", category);
+    // formdata.append("price", price);
+    // formdata.append("myPdf", input.profilePic, input.profilePic.name);
+    formdata.append("myPdf", newFile.profilePdf, newFile.profilePdf.name);
+    console.log(formdata.data);
+    // console.log("myfile", input.profilePic, input.profilePic.name);
+
+    // console.log(newFile.profilePdf, newFile.profilePdf.name);
+
+    axios.post("http://localhost:3001/pdf", formdata).then((res) => {
+      console.log("success");
+      alert("inserted");
+      // console.log(formdata);
+    });
+  };
 
   const [input, setInput] = useState({ profilePic: "" });
   const imageUpload = (e) => {
     console.log(e.target.files[0]);
     setInput({ ...input, profilePic: e.target.files[0] });
   };
-  const [newFile, setFile] = useState({ profilePdf: "" });
-  const pdfUpload = (e) => {
-    setFile({ ...newFile, profilePdf: e.target.files[0] });
-    console.log(e.target.files[0].name);
-  };
+  // const [newFile, setFile] = useState({ profilePdf: "" });
+  // const pdfUpload = (e) => {
+  //   setFile({ ...newFile, profilePdf: e.target.files[0] });
+  //   console.log(e.target.files[0].name);
+  // };
 
   return (
     <>
@@ -119,6 +147,31 @@ function LatestCategory() {
             />
           </div>
           <div className="Dashboard_crud">
+            <p className="Field ">
+              <label htmlFor="">Title</label>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="Enter book Title"
+                onChange={(event) => {
+                  setPdfTitle(event.target.value);
+                }}
+              />
+            </p>
+            <p className="Field ">
+              <label htmlFor="">ID</label>
+              <input
+                type="number"
+                name=""
+                id=""
+                placeholder="Enter book price"
+                onChange={(event) => {
+                  setPdfId(event.target.value);
+                }}
+              />
+            </p>
+
             <label htmlFor="">Pdf</label>
             <input
               type="file"
@@ -127,7 +180,9 @@ function LatestCategory() {
               onChange={pdfUpload}
               required
             />
-            {/* <button className="submit">Pdf Submit</button> */}
+            <button className="submit" onClick={addPdfs}>
+              Pdf Submit
+            </button>
           </div>
           <button type="submit" className="submit" onClick={addBooks}>
             Add

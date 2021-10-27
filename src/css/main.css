@@ -811,12 +811,12 @@ img {
 
 .linkToBooks-container .info-wrap .info {
   width: 65%;
-  margin-top: 60px;
-  background: rgba(255, 255, 255, 0.15);
+  margin-top: 40px;
+  background: rgba(255, 255, 255, 0.6);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 5px 25px rgba(37, 36, 36, 0.5);
-  filter: blur(0.5px);
+  filter: blur(0);
   transition: all 300ms ease-in-out;
 }
 
@@ -858,6 +858,7 @@ img {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   margin-left: 20px;
+  overflow-y: scroll;
 }
 
 .latestCategory .container {
@@ -2160,6 +2161,8 @@ main .card4 {
   margin: 0 auto;
   background: #Fdfdfd;
   position: relative;
+  padding: 40px 0;
+  height: 100%;
 }
 
 .itemDetails-container .item-info::after {
@@ -2184,10 +2187,14 @@ main .card4 {
 .itemDetails-container .item-info .books-item-info {
   padding: 15px 0 0;
   display: flex;
+  margin-top: 20px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  text-align: center;
   border-radius: 4px;
+  width: 100%;
+  height: 480px;
 }
 
 .itemDetails-container .item-info .img-book-container {
@@ -2196,6 +2203,9 @@ main .card4 {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
 }
 
 .itemDetails-container .item-info .img-book-container button {
@@ -2209,6 +2219,12 @@ main .card4 {
   font-weight: 550;
 }
 
+.itemDetails-container .item-info .img-book-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: center;
+}
+
 .itemDetails-container .item-info .info-container {
   display: flex;
   flex-direction: column;
@@ -2216,6 +2232,19 @@ main .card4 {
   align-items: flex-start;
   text-align: center;
   padding: 10px;
+}
+
+.itemDetails-container .item-info .info-container .description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+}
+
+.itemDetails-container .item-info .info-container .description-container h1 {
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .itemDetails-container .item-info .info-container > h1 {

@@ -85,6 +85,16 @@ function ItemDetails({ match }) {
               <h3>
                 Category <span> {bookLists.Category}</span>
               </h3>
+              <div className="description-container">
+                <h1>Description</h1>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Molestias laboriosam recusandae iste laudantium amet deserunt
+                  cupiditate hic ipsum ut eligendi corrupti incidunt minima,
+                  eius magnam ducimus necessitatibus accusamus aspernatur
+                  placeat!
+                </p>
+              </div>
             </div>
           </div>
         </div>

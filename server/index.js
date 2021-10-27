@@ -21,14 +21,15 @@ app.use("/public/images", express.static("public/images"));
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (file.fieldname === "myfile") cb(null, "public/images");
-    else if (file.fieldname === "myPdf") {
+    if (file.fieldname === "myPdf") {
       cb(null, "public");
     }
   },
   filename: (req, file, cb) => {
     if (file.fieldname === "myfile") {
       cb(null, file.fieldname + "-" + Date.now() + "_" + file.originalname);
-    } else if (file.fieldname === "myPdf") {
+    }
+    if (file.fieldname === "myPdf") {
       cb(null, file.fieldname + "-" + Date.now() + file.originalname);
     }
   },
@@ -94,6 +95,29 @@ app.post("/create", upload.single("myfile"), (req, res) => {
     }
   );
 });
+//pdf input
+app.post("/pdf", upload.single("myPdf"), (req, res) => {
+  const title = req.body.title;
+  const id = req.body.id;
+  // const author = req.body.author;
+  // const category = req.body.category;
+  // const price = req.body.price;
+  // const image = req.file.filename;
+  const pdf = req.file.filename;
+  db.query(
+    "INSERT INTO pdf (title,id,pdf) VALUES(?,?,?)",
+    [title, id, pdf],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("values Inserted");
+      }
+    }
+  );
+});
+
+//login auth
 app.post("/authentication", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -212,6 +236,22 @@ app.put("/update", (req, res) => {
     }
   );
 });
+// app.post("/pdf", upload.single("myPdf"), (req, res) => {
+//   const id = req.body.id;
+//   const pdf = req.file.filename;
+
+//   db.query(
+//     "INSERT INTO books COLUMN pdf = ? WHERE id= ?",
+//     [pdf, id],
+//     (err, result) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         res.send(result);
+//       }
+//     }
+//   );
+// });
 app.put("/author", (req, res) => {
   const id = req.body.id;
   const author = req.body.author;

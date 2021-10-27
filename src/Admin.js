@@ -91,28 +91,54 @@ function Admin() {
       );
     });
   };
-  const [newImage, setNewImage] = useState("");
-  const updateImage = (id) => {
-    axios
-      .put("http://localhost:3001/image", { image: newImage, id: id })
-      .then((response) => {
-        alert("updating please wait for sometime !");
-        setNewImage(
-          bookList.map((val) => {
-            return val.id === id
-              ? {
-                  id: val.id,
-                  title: val.title,
-                  author: val.author,
-                  price: val.Price,
-                  category: val.category,
-                  image: val.newImage,
-                }
-              : val;
-          })
-        );
-      });
+  const [title, setTitle] = useState("");
+  const [id, setId] = useState("");
+
+  const [newFile, setFile] = useState({ profilePdf: "" });
+  const pdfUpload = (e) => {
+    setFile({ ...newFile, profilePdf: e.target.files[0] });
+    console.log(e.target.files[0]);
   };
+  const addPdfs = () => {
+    // console.log(input.profilePic, "==", input.profilePic.name);
+    const formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("id", id);
+    // formdata.append("category", category);
+    // formdata.append("price", price);
+    // formdata.append("myPdf", input.profilePic, input.profilePic.name);
+    formdata.append("myPdf", newFile.profilePdf, newFile.profilePdf.name);
+    // console.log("myfile", input.profilePic, input.profilePic.name);
+
+    // console.log(newFile.profilePdf, newFile.profilePdf.name);
+
+    axios.post("http://localhost:3001/pdf", formdata).then((res) => {
+      console.log("success");
+      // console.log(formdata);
+    });
+  };
+  // const updatePdf = (id) => {
+  //   console.log(newFile);
+  //   axios
+  //     .post("http://localhost:3001/pdf", { pdf: newFile, id: id })
+  //     .then((response) => {
+  //       alert("updating please wait for sometime !");
+  //       // setFile(
+  //       //   bookList.map((val) => {
+  //       //     return val.id === id
+  //       //       ? {
+  //       //           id: val.id,
+  //       //           title: val.title,
+  //       //           author: val.author,
+  //       //           price: val.Price,
+  //       //           category: val.category,
+  //       //           pdf: val.newPdf,
+  //       //         }
+  //       //       : val;
+  //       //   })
+  //       // );
+  //     });
+  // };
   const [isActiveDd, setActiveDd] = useState(false);
   const handelDropdown = () => {
     setActiveDd(!isActiveDd);
@@ -297,14 +323,9 @@ function Admin() {
                       name="myPdf"
                       id="name"
                       autoComplete="off"
-                      onChange={(event) => {
-                        setNewImage(event.target.files[0]);
-                      }}
+                      onChange={pdfUpload}
                     />
-                    <button
-                      onClick={() => updateImage(val.id)}
-                      className="btnUpdate btnControl"
-                    >
+                    <button className="btnUpdate btnControl">
                       <MdUpdate color="white" fontSize="1.5em" />
                     </button>
                   </div>
