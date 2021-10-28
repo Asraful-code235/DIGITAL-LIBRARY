@@ -6,11 +6,20 @@ import axios from "axios";
 function LatestCategory() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
+    getLastId();
   }, []);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
+  const [lastId, setLastId] = useState([]);
+  const getLastId = () => {
+    axios.get(`http://localhost:3001/lastId`).then((response) => {
+      setLastId(response.data[0]);
+
+      // console.log(response.data);
+    });
+  };
 
   const addBooks = () => {
     // console.log(input.profilePic, "==", input.profilePic.name);
@@ -27,6 +36,7 @@ function LatestCategory() {
 
     axios.post("http://localhost:3001/create", formdata).then((res) => {
       console.log("success");
+
       // console.log(formdata);
     });
   };
@@ -147,7 +157,7 @@ function LatestCategory() {
             />
           </div>
           <div className="Dashboard_crud">
-            <p className="Field ">
+            <p className="title-display-none ">
               <label htmlFor="">Title</label>
               <input
                 type="text"
@@ -160,12 +170,15 @@ function LatestCategory() {
               />
             </p>
             <p className="Field ">
-              <label htmlFor="">ID</label>
+              <div className="pdfInfo-container">
+                <h4>CurrentId---:{lastId.id}</h4>
+                <h4>Enter next id:</h4>
+              </div>
               <input
                 type="number"
                 name=""
                 id=""
-                placeholder="Enter book price"
+                placeholder="Enter id of Book"
                 onChange={(event) => {
                   setPdfId(event.target.value);
                 }}
@@ -180,11 +193,18 @@ function LatestCategory() {
               onChange={pdfUpload}
               required
             />
-            <button className="submit" onClick={addPdfs}>
+            {/* <button className="submit" onClick={addPdfs}>
               Pdf Submit
-            </button>
+            </button> */}
           </div>
-          <button type="submit" className="submit" onClick={addBooks}>
+          <button
+            type="submit"
+            className="submit"
+            onClick={() => {
+              addBooks();
+              addPdfs();
+            }}
+          >
             Add
           </button>
 
