@@ -74,18 +74,19 @@
     padding: 20px 0 0 0;
     // background: #fff;
     background: #fff;
+    // border: 2px solid red;
 
 
     .item-info {
         // border: 2px solid red;
         width: 60%;
         margin: 0 auto;
-        background: #Fdfdfd;
         position: relative;
-        padding: 40px 0;
+        // padding: 2px 2px 0 2px;
         // margin-bottom: 40px;
         // border: 2px solid red;
         height: 100%;
+        // margin-bottom: 10px;
         // margin-top: 20px;
 
         &::after {
@@ -103,25 +104,28 @@
         }
 
         h1 {
-            padding: 20px 0 0;
-            font-size: 14px;
+            padding: 20px 0 0 0;
+            font-size: 16px;
             font-weight: 400px;
             color: #1e7b85;
+            // border: 2px solid green;
 
         }
 
         .books-item-info {
-            padding: 15px 0 0;
+            padding: 0px 0 0 0;
             // border: 2px solid blue;
             display: flex;
-            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.07);
+
+            // margin-top: -20px;
             flex-direction: row;
             justify-content: flex-start;
             align-items: flex-start;
             text-align: center;
             border-radius: 4px;
             width: 100%;
-            height: 480px;
+            height: 100%;
         }
 
         .img-book-container {
@@ -130,10 +134,21 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-top: 20px;
+            // margin-top: 20px;
             // border: 2px solid red;
             height: 100%;
             width: 100%;
+
+            .pdfDownload {
+                width: 300px;
+                // border: 3px solid blue;
+            }
+
+            .pdfDownload {
+                img {
+                    opacity: 0;
+                }
+            }
 
             button {
                 margin-top: 4px;
@@ -144,7 +159,10 @@
                 border-radius: 4px;
                 border: 1px solid #1e7b85;
                 font-weight: 550;
+                cursor: pointer;
             }
+
+
 
             img {
                 width: 100%;
@@ -160,7 +178,9 @@
             align-items: flex-start;
             text-align: center;
             // border: 2px solid red;
-            padding: 10px;
+            background: transparent;
+            padding: 0 10px;
+            margin-left: 20px;
 
             .description-container {
                 display: flex;
@@ -325,6 +345,8 @@
     width: 60%;
     margin: 0 auto;
     background: #Fdfdfd;
+    // border: 2px solid red;
+    // overflow: hidden;
 
     .related-books {
         padding: 10px 0;
@@ -372,11 +394,12 @@
 
         .related-container {
             padding: 20px 0;
+            // border: 2px solid blue;
 
             h1 {
                 font-size: 20px;
                 font-weight: 600;
-                line-height: 1.3em;
+                line-height: 1.3rem;
             }
         }
     }
@@ -390,8 +413,9 @@
 
     .GridContainer {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-
+        grid-template-columns: repeat(6, 1fr);
+        margin-left: -9px;
+        gap: 10px;
         width: 100%;
         // margin: 0 auto;
         background: #fff;
@@ -416,11 +440,13 @@
             display: flex;
             justify-content: flex-start;
             flex-direction: column;
+            align-items: flex-start;
             text-align: center;
             // padding: 2px;
             align-items: center;
+            margin-bottom: 10px;
             // padding: 5px;
-            // margin: 5px;
+            // margin-right: -100px;
             border: none;
             // box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
             border-radius: 5px;
@@ -429,7 +455,8 @@
 
             // border: 2px solid green;
             // overflow: hidden;
-            margin: 4px;
+            // margin: 4px;
+            // backface-visibility: hidden;
 
 
             &:hover {
@@ -449,7 +476,7 @@
                 align-items: center;
 
                 // margin-bottom: 5px;
-                //border: 2px solid blue;
+                // border: 2px solid blue;
 
                 // .book-grid {
                 //     z-index: 2;

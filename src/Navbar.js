@@ -20,9 +20,9 @@ function Navbar() {
               <div key={item.id}>
                 <Link to={`/${item.title}`}>
                   <li>
-                    <a className={item.cName} href={item.url}>
+                    <p className={item.cName} href={item.url}>
                       {item.title}
-                    </a>
+                    </p>
                   </li>
                 </Link>
               </div>

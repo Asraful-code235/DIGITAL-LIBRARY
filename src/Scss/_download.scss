@@ -1,0 +1,43 @@
+.about-container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background: #fff;
+    overflow: hidden;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    .download-info {
+        // width: 100%;
+        // height: 100%;
+        width: 400px;
+        height: 200px;
+        background: #eee;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+            color: #1e7b85;
+            padding: 10px 20px;
+        }
+
+        button {
+            padding: 14px 22px;
+            background: #1e7b85;
+            color: #fff;
+            border: 1px solid #1e7b85;
+            border-radius: 4px;
+            margin: 10px;
+        }
+
+        .download {
+            img {
+                opacity: 0;
+            }
+        }
+    }
+}

@@ -92,7 +92,7 @@ function Login() {
                 />
               </div>
               <div className="btn-container">
-                <Link to={`${isAuth ? "/Dashboard" : "/login"}`}>
+                <Link to={`${!isAuth ? "/Dashboard" : "/admin"}`}>
                   <button
                     disabled={!email}
                     type="submit"

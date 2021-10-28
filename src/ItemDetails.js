@@ -8,10 +8,16 @@ function ItemDetails({ match }) {
   useEffect(() => {
     getBooks();
     categoryBooks();
+    handelParams();
 
     // categoryBooks();
   }, []);
+  const [paramsId, setParamsId] = useState(0);
   const [bookLists, setBookLists] = useState([]);
+  const handelParams = () => {
+    setParamsId(match.params.id);
+    console.log(match.params);
+  };
   const getBooks = () => {
     axios
       .get(`http://localhost:3001/Books/${match.params.id}`)
@@ -21,6 +27,9 @@ function ItemDetails({ match }) {
         // console.log(response.data);
       });
   };
+  //getting pdf from database
+
+  //
   const [categoryList, setCategoryList] = useState([]);
   const categoryBooks = () => {
     // console.log(match.params);
@@ -65,17 +74,20 @@ function ItemDetails({ match }) {
     <div>
       <div className="itemDetails-container">
         <div className="item-info">
+          {/* <h1>{paramsId}</h1> */}
           <h1>Home &gt; Books &gt; {bookLists.Title}</h1>
           <div className="books-item-info">
             <div className="img-book-container">
-              {bookLists && (
+              {bookLists.image && (
                 <img
                   src={`http://localhost:3001/public/images/${bookLists.image}`}
                   alt="img"
                 />
               )}
               <button>View Pdf</button>
-              <button>Download</button>
+              <Link to={`/Books/${paramsId}/${match.params.category}/pdf`}>
+                <button className="pdfDownload">Download </button>
+              </Link>
             </div>
             <div className="info-container">
               <h1>{bookLists.Title}</h1>

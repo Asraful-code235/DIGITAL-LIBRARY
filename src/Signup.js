@@ -10,7 +10,7 @@ function Signup() {
     <>
       <Router>
         <Switch>
-          <Route path={"/login"} exact component={Login} />
+          <Route path={"/admin"} exact component={Login} />
           <Route path={"/registration"} exact component={Registration} />
           <Route path={"/Dashboard"} exact component={Dashboard} />
         </Switch>

@@ -35,7 +35,7 @@ function Dashboard() {
         </Routers>
 
         {/* <Sidebar /> */}
-        <Link to={"/login"}>
+        <Link to={"/admin"}>
           <div className="navbar_left_leave">
             <i className="fa fa-sign-out"></i>
             <h1>Leave</h1>

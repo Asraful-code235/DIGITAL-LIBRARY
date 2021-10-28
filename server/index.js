@@ -116,7 +116,6 @@ app.post("/pdf", upload.single("myPdf"), (req, res) => {
     }
   );
 });
-
 //login auth
 app.post("/authentication", (req, res) => {
   const email = req.body.email;
@@ -208,6 +207,43 @@ app.get(`/Books/:id/:Category`, (req, res) => {
     "SELECT * FROM books WHERE Category = 'CSE' ",
     // req.params.id,
     req.params.Category,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
+
+//SELECT * FROM librarysystem.pdf INNER JOIN librarysystem.books WHERE librarysystem.pdf.Title=librarysystem.books.Title;
+
+app.get(`/Books/:id/:Category/pdf`, (req, res) => {
+  // const pdf = req.body.pdfId;
+  db.query(
+    "SELECT * FROM pdf WHERE id= ?",
+
+    req.params.id,
+    // req.params.Category,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
+//SELECT id FROM librarysystem.books WHERE id=(SELECT MAX(id)from librarysystem.books);
+//getting last id for pdf insertion purposes
+app.get(`/lastId`, (req, res) => {
+  db.query(
+    "SELECT id FROM books WHERE id=(SELECT MAX(id)from books);",
+    // req.params.id,
+    // req.params.Category,
     (err, result) => {
       if (err) {
         console.log(err);

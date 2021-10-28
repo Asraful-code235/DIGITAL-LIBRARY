@@ -5,17 +5,17 @@ export const items = [
     url: "#",
     cName: "nav-links",
   },
-  // {
-  //   id: 2,
-  //   title: "Contact",
-  //   url: "#",
-  //   cName: "nav-links",
-  // },
+  {
+    id: 2,
+    title: "About",
+    url: "#",
+    cName: "nav-links",
+  },
 
-  // {
-  //   id: 3,
-  //   title: "About",
-  //   url: "#",
-  //   cName: "nav-links",
-  // },
+  {
+    id: 3,
+    title: "Team",
+    url: "#",
+    cName: "nav-links",
+  },
 ];
