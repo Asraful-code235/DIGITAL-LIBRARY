@@ -11,16 +11,17 @@ import ItemDetails from "./ItemDetails";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Signup from "./Signup";
 import ProtectedRoute from "./ProtectedRoute";
+import FirstNav from "./FirstNav";
 function App() {
   return (
     <Router>
       <div>
         <Route path="/" exact component={Navbar} />
-        <Route path="/About" exact component={Navbar} />
+        <Route path="/About" exact component={FirstNav} />
         <Route path="/" exact component={Hero} />
         <Route path="/" exact component={FrontendCover} />
         <Route path="/" exact component={Footer} />
-        <Route path="/Books" component={Navbar} />
+        <Route path="/Books" component={FirstNav} />
         <Route path="/Books" exact component={Books} />
         <Route path="/Books" exact component={Footer} />
         <Route path="/About" exact component={DigitalLInfo} />

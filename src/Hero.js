@@ -10,7 +10,7 @@ import FrontendInfo from "./FrontendInfo";
 
 function Hero() {
   useEffect(() => {
-    Aos.init({ duration: 2000 });
+    Aos.init({ duration: 500 });
   }, []);
 
   return (
@@ -134,7 +134,7 @@ const Component3 = () => {
           <Splide
             options={{
               type: "loop",
-              gap: "1.2rem",
+              gap: "1.5rem",
               autoplay: true,
               pauseOnHover: false,
               resetProgress: false,

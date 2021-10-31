@@ -2,13 +2,16 @@ import React from "react";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="Footer-container">
       <div className="Footer-info">
         <ul>
           <h3>About</h3>
-          <li>About Digital Library</li>
+          <Link to="/About">
+            <li>About Digital Library</li>
+          </Link>
           <li>Join us</li>
           <li>Contact us</li>
         </ul>

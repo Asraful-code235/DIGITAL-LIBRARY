@@ -3,7 +3,7 @@ import { items } from "./navItems";
 import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 
-function Navbar() {
+function FirstNav() {
   const [isActive, setActive] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const [Toggle, setToggle] = useState(false);
@@ -38,20 +38,20 @@ function Navbar() {
                 </div>
               );
             })}
-            <Link to="/signup">
+            {/* <Link to="/signup">
               <button className="signupFirst">Sign Up</button>
-            </Link>
+            </Link> */}
           </ul>
-          {/* <div className="search-box">
-          <input
-            type="text"
-            className="search-txt"
-            placeholder="type to search"
-          />
-          <a href="#" className="search-btn">
-            <i className="fa fa-search"></i>
-          </a>
-        </div> */}
+          <div className="search-box">
+            <input
+              type="text"
+              className="search-txt"
+              placeholder="type to search"
+            />
+            <p className="search-btn">
+              <BsSearch fontSize="1.5rem" className="BsSearch" />
+            </p>
+          </div>
           <div className="toggle">
             <div
               className={`hamburger-container ${isActive ? "active" : ""}`}
@@ -63,22 +63,19 @@ function Navbar() {
             </div>
           </div>
         </div>
+        {/* includes mobile hamburger menu */}
         <div className={`ham-container ${Toggle ? "active" : ""}`}>
           <div className="hamburgerOpen ">
             <div className="ham-info ">
               <div className="search-box">
-                <div className="search">
-                  <input
-                    type="text"
-                    className="search-txt"
-                    placeholder="type to search"
-                  />
-                  <p className="search-btn">
-                    <div className="btn-search">
-                      <BsSearch fontSize="1.5rem" className="BsSearch" />
-                    </div>
-                  </p>
-                </div>
+                <input
+                  type="text"
+                  className="search-txt"
+                  placeholder="type to search"
+                />
+                <p className="search-btn">
+                  <BsSearch fontSize="1.5rem" className="BsSearch" />
+                </p>
               </div>
               <ul className="mobile-nav-menu">
                 {items.map((item) => {
@@ -106,4 +103,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default FirstNav;

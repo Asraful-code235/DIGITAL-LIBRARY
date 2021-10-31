@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import aboutLogo from "./images/digitalLibrary.PNG";
+import aboutLogo from "./images/rsz_digitallibrary.png";
 import Footer from "./Footer";
 
 const CoreItems = [
@@ -90,11 +90,13 @@ function DigitalLInfo() {
                       /> */}
                       <img src={src} alt="img" />
                     </div>
-                    <h1>{h1}</h1>
-                    <p>
-                      <span>{highlight}</span>
-                      {p}
-                    </p>
+                    <div className="itemsInfo">
+                      <h1>{h1}</h1>
+                      <p>
+                        <span>{highlight}</span>
+                        {p}
+                      </p>
+                    </div>
                   </div>
                 );
               })}

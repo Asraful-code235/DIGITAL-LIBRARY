@@ -78,16 +78,20 @@ function ItemDetails({ match }) {
           <h1>Home &gt; Books &gt; {bookLists.Title}</h1>
           <div className="books-item-info">
             <div className="img-book-container">
-              {bookLists.image && (
-                <img
-                  src={`http://localhost:3001/public/images/${bookLists.image}`}
-                  alt="img"
-                />
-              )}
+              <div className="img-only-container">
+                {bookLists.image && (
+                  <img
+                    src={`http://localhost:3001/public/images/${bookLists.image}`}
+                    alt="img"
+                  />
+                )}
+              </div>
               <button>View Pdf</button>
-              <Link to={`/Books/${paramsId}/${match.params.category}/pdf`}>
-                <button className="pdfDownload">Download </button>
-              </Link>
+              <div className="download-btn">
+                <Link to={`/Books/${paramsId}/${match.params.category}/pdf`}>
+                  <button className="pdfDownload">Download </button>
+                </Link>
+              </div>
             </div>
             <div className="info-container">
               <h1>{bookLists.Title}</h1>
