@@ -43,15 +43,15 @@ function Navbar() {
             </Link>
           </ul>
           {/* <div className="search-box">
-          <input
-            type="text"
-            className="search-txt"
-            placeholder="type to search"
-          />
-          <a href="#" className="search-btn">
-            <i className="fa fa-search"></i>
-          </a>
-        </div> */}
+            <input
+              type="text"
+              className="search-txt"
+              placeholder="type to search"
+            />
+            <a href="#" className="search-btn">
+              <i className="fa fa-search"></i>
+            </a>
+          </div> */}
           <div className="toggle">
             <div
               className={`hamburger-container ${isActive ? "active" : ""}`}
@@ -66,7 +66,7 @@ function Navbar() {
         <div className={`ham-container ${Toggle ? "active" : ""}`}>
           <div className="hamburgerOpen ">
             <div className="ham-info ">
-              <div className="search-box">
+              {/* <div className="search-box">
                 <div className="search">
                   <input
                     type="text"
@@ -79,7 +79,7 @@ function Navbar() {
                     </div>
                   </p>
                 </div>
-              </div>
+              </div> */}
               <ul className="mobile-nav-menu">
                 {items.map((item) => {
                   return (

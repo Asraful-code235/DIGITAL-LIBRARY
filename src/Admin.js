@@ -212,7 +212,7 @@ function Admin() {
   };
   // getBooks();
   return (
-    <section data-aos="fade-down-right" className="ImageGrid">
+    <section className="ImageGrid">
       <div className="control">
         <ul>
           <li

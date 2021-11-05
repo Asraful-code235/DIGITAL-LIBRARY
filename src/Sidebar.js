@@ -26,17 +26,19 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
         <Link to={"/Dashboard"}>
           <div className="sidebar_link active_menu_link">
             <i className="fa fa-home"></i>
-            <a href="#">Dashboard</a>
+            <p>Dashboard</p>
           </div>
         </Link>
-        <div className="sidebar_link">
-          <i className="fa fa-user-secret"></i>
-          <a href="#">Admin Management</a>
-        </div>
+        <Link to="/Dashboard/AdminManagement">
+          <div className="sidebar_link">
+            <i className="fa fa-user-secret"></i>
+            <p>Admin Management</p>
+          </div>
+        </Link>
         <Link to={"/Dashboard/LibraryManagement"}>
           <div className="sidebar_link">
             <i className="fa fa-building-o"></i>
-            <a href="#">Library Management</a>
+            <p>Library Management</p>
           </div>
         </Link>
         <Link to={"/Dashboard/BookManagement"}>
@@ -45,16 +47,12 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
             onClick={() => handelColor}
           >
             <i className="fa fa-book"></i>
-            <a href="#">Book Management</a>
+            <p>Book Management</p>
           </div>
         </Link>
         <div className="sidebar_link">
-          <i className="fa fa-handshake-o"></i>
-          <a href="#">Contacts</a>
-        </div>
-        <div className="sidebar_link">
           <i className="fa fa-question"></i>
-          <a href="#">Requests</a>
+          <p>Requests</p>
         </div>
       </div>
     </div>

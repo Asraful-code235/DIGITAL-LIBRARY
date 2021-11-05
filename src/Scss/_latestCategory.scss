@@ -101,6 +101,19 @@
         background: coral;
         color: #fff;
         width: 100%;
+        outline: none;
+        background-position: center;
+        transition: background 1s;
+
+        &:hover {
+            background: rgba(226, 125, 8, 0.8) radial-gradient(circle, transparent 1%, rgb(226, 125, 8) 1%) center/15000%;
+        }
+
+        &:active {
+            background-color: rgba(226, 125, 8, 0.8);
+            background-size: 100%;
+            transition: background 0s;
+        }
     }
 
     .Dashboard_crud {

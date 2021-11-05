@@ -217,6 +217,33 @@ app.get(`/Books/:id/:Category`, (req, res) => {
     }
   );
 });
+//get every category items
+app.get(`/items/:Category`, (req, res) => {
+  db.query(
+    "SELECT * FROM books WHERE Category = ? ",
+    // req.params.id,
+    req.params.Category,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
+//Getting the latest items from the database
+app.get(`/latest`, (req, res) => {
+  db.query("SELECT * FROM books ORDER BY id DESC LIMIT  5", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.send(result);
+    }
+  });
+});
 
 //SELECT * FROM librarysystem.pdf INNER JOIN librarysystem.books WHERE librarysystem.pdf.Title=librarysystem.books.Title;
 
@@ -253,6 +280,17 @@ app.get(`/lastId`, (req, res) => {
       }
     }
   );
+});
+//SELECT * FROM librarysystem.auth;
+app.get(`/users`, (req, res) => {
+  db.query("SELECT * FROM auth", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result);
+      res.send(result);
+    }
+  });
 });
 
 //updating database
@@ -340,6 +378,17 @@ app.put("/price", (req, res) => {
 app.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
   db.query("DELETE FROM books WHERE id=?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+//delete user from database
+app.delete("/users/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM auth WHERE id=?", id, (err, result) => {
     if (err) {
       console.log(err);
     } else {

@@ -4,9 +4,11 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import FirstNav from "./FirstNav";
 function ItemsShow() {
   useEffect(() => {
-    Aos.init({ duration: 1500 });
+    Aos.init({ duration: 2500 });
     getBooks();
   }, []);
   const [bookList, setBookList] = useState([]);
@@ -78,9 +80,25 @@ function ItemsShow() {
       setActiveDd(!isActiveDd);
     }
   };
+  const [searchTerm, setSearchTerm] = useState("");
+  const [cse, setCse] = useState("");
+
   // getBooks();
   return (
-    <section data-aos="fade-up" className="ImageGrid">
+    <section className="ImageGrid">
+      <div className="search-box">
+        <input
+          type="text"
+          className="search-txt"
+          placeholder="type to search by title/category"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
+        <p className="search-btn">
+          <BsSearch fontSize="1.5rem" className="BsSearch" />
+        </p>
+      </div>
       <div className="control">
         <ul>
           <li
@@ -107,37 +125,67 @@ function ItemsShow() {
             LATEST
           </li>
         </ul>
-        <ul className={`category-books-items ${isActiveDd ? "active" : ""}`}>
-          <li>CSE</li>
-          <li>EEE</li>
-          <li>STORY</li>
-        </ul>
+        <div className={`category-books-items ${isActiveDd ? "active" : ""}`}>
+          <div className="category-container">
+            <h1>All Category</h1>
+            <div className="container-wrap">
+              <li
+                onClick={() => {
+                  setCse("CSE");
+                  console.log(cse);
+                }}
+              >
+                CSE
+              </li>
+              <li>EEE</li>
+              <li>STORY</li>
+              <li>ACTION</li>
+              <li>TEXTILE</li>
+              <li>BBA</li>
+              <li>LAW</li>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="GridContainer">
-        {bookList.map((val) => {
-          return (
-            <div className="containerBooks" key={val.id}>
-              <Link to={`Books/${val.id}/${val.Category}`}>
-                <div className="imgContainer">
-                  <div className="book-grid">
-                    <img
-                      src={`http://localhost:3001/public/images/${val.image}`}
-                      alt="img"
-                    />
+        {bookList
+          .filter((val) => {
+            if (searchTerm == "") {
+              return val;
+            } else if (
+              val.Category.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            } else if (
+              val.Title.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .map((val) => {
+            return (
+              <div className="containerBooks" key={val.id}>
+                <Link to={`Books/${val.id}/${val.Category}`}>
+                  <div className="imgContainer">
+                    <div className="book-grid">
+                      <img
+                        src={`http://localhost:3001/public/images/${val.image}`}
+                        alt="img"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="info">
-                  <div className="header">
-                    <h1>{val.Title}</h1>
+                  <div className="info">
+                    <div className="header">
+                      <h1>{val.Title}</h1>
+                    </div>
+                    <p>{val.Author}</p>
+                    {/* <p>Category:{val.Category}</p> */}
+                    <div className="btn_container"></div>
                   </div>
-                  <p>{val.Author}</p>
-                  {/* <p>Category:{val.Category}</p> */}
-                  <div className="btn_container"></div>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+                </Link>
+              </div>
+            );
+          })}
       </div>
     </section>
   );

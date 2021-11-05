@@ -9,11 +9,13 @@ function Footer() {
       <div className="Footer-info">
         <ul>
           <h3>About</h3>
-          <Link to="/About">
+          <Link to="/About" style={{ color: "black" }}>
             <li>About Digital Library</li>
           </Link>
           <li>Join us</li>
-          <li>Contact us</li>
+          <Link to="/Contact" style={{ color: "black" }}>
+            <li>Contact Us</li>
+          </Link>
         </ul>
         <ul>
           <h3>Support</h3>

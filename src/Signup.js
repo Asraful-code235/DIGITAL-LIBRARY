@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/main.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Registration from "./Registration";
 import Login from "./Login";
+import ProtectedRoute from "./ProtectedRoute";
 
 function Signup() {
+  const [isAuth, setIsAuth] = useState(true);
   return (
     <>
       <Router>
         <Switch>
-          <Route path={"/admin"} exact component={Login} />
-          <Route path={"/registration"} exact component={Registration} />
-          <Route path={"/Dashboard"} exact component={Dashboard} />
+          <Route path={"/Admin"} exact component={Login} />
+          {/* <Route path={"/registration"} exact component={Registration} /> */}
+
+          <Route
+            path="/Dashboard"
+            exact
+            component={Dashboard}
+            isAuth={isAuth}
+          />
         </Switch>
       </Router>
     </>

@@ -1,15 +1,20 @@
-// import React from "react";
-// import { Route, Redirect } from "react-router-dom";
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
-// function ProtectedRoute({ isAuth: isAuth, component: Component, ...rest }) {
-//   return <Route {...rest} render={(props)=>{
-//       if(isAuth){
-//           return<Component/>
-//       }
-//       else{
-//           return <Redirect to={{pathname:"/login",state:{from:props.location}}} />
-//       }
-//   }} />;
-// }
+//isAuth: isAuth,
+function ProtectedRoute({ isAuth: isAuth, component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        if (isAuth) {
+          return <Component {...props} />;
+        } else if (!isAuth) {
+          return <Redirect to="/Admin" />;
+        }
+      }}
+    ></Route>
+  );
+}
 
-// export default ProtectedRoute;
+export default ProtectedRoute;

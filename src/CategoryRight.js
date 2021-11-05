@@ -7,6 +7,9 @@ export const categoryRight = [
     item2: "EEE",
     item3: "TEXTILE",
     item4: "BBA",
+    item5: "Law",
+    item6: "Story",
+    item7: "Action",
   },
   {
     id: 2,

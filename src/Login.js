@@ -1,22 +1,23 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import { GrPowerReset } from "react-icons/gr";
-import { BiArrowBack } from "react-icons/bi";
+import {
+  BrowserRouter as Routers,
+  Route,
+  useHistory,
+  Switch,
+} from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
-
-function Login() {
-  useEffect(() => {
-    if (isAuth) {
-      login();
-    }
-    return () => {
-      login();
-    };
-  }, []);
+function Login(props) {
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     login();
+  //   }
+  //   return () => {
+  //     // login();
+  //   };
+  // }, []);
   const history = useHistory();
   const handelClick = () => {
     history.push("/login");
@@ -27,6 +28,9 @@ function Login() {
   };
   const [isEmail, setEmail] = useState("");
   const [isPassword, setPassword] = useState("");
+  const [successful, setSetSuccessful] = useState("");
+  const [active, setSetActive] = useState(false);
+
   const authInput = () => {
     axios
       .post("http://localhost:3001/authentication", {
@@ -35,11 +39,15 @@ function Login() {
       })
       .then((response) => {
         console.log("successful");
+        setSetActive(true);
+        setSetSuccessful("Account created");
       });
   };
   const [email, setEmailReg] = useState("");
   const [password, setPasswordReg] = useState("");
-  const [isAuth, setAuth] = useState(false);
+  const [verified, setVerified] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
   const [loginStatus, setLoginStatus] = useState([]);
 
   const login = () => {
@@ -50,25 +58,75 @@ function Login() {
       })
       .then((response) => {
         if (response.data.message) {
+          setVerified(true);
           setLoginStatus(response.data.message);
+          // console.log(response.data.message);
+          // console.log(isAuth);
         } else {
           setLoginStatus(response.data[0]);
-          // alert("success");
-          setAuth(!isAuth);
+          // console.log(response.data[0].email);
+          // console.log(response.data[0].password);
+          // setIsAuth(isAuth);
+          history.push("/Dashboard");
+          // isAuth = true;
+          // console.log("clicked");
+          // console.log(isAuth);
         }
-        // console.log(response.data);
+        // console.log(loginStatus);
       });
   };
 
   function refresh() {
     window.location.reload(false);
   }
+  const [btnText, setBtnText] = useState("SIGN UP");
+  const [headerText, setHeaderBtn] = useState("Dont have an account? ");
+  const [btnParagraph, setBtnParagraph] = useState(
+    "Click the button bellow to go to sign up page."
+  );
+  const handelInfo = () => {
+    if (btnText === "SIGN UP") {
+      setBtnText("LOG IN");
+      setHeaderBtn("Have an account?");
+      setBtnParagraph("Click the button bellow to go to sign up page.");
+    } else {
+      setBtnText("SIGN UP");
+      setHeaderBtn("Dont have an account?");
+      setBtnParagraph("Click the button bellow to go to log in page.");
+    }
+  };
+  // const [isAuth, setIsAuth] = useState(false);
+
   return (
-    <>
+    <div className="loginPage">
       <div className="login-container">
+        <div className="login-info">
+          <div className="header-info">
+            <h1>{headerText}</h1>
+          </div>
+          <div className="normal-info">
+            <p>{btnParagraph}</p>
+          </div>
+          <button
+            className="btn-signup"
+            onClick={() => {
+              handelFlip();
+              handelInfo();
+              setEmailReg("");
+              setPasswordReg("");
+              setVerified("");
+              setSetSuccessful("");
+            }}
+          >
+            {btnText}
+          </button>
+        </div>
         <div className="login-wrap">
           <div className={`inner ${isFlip ? "active" : ""}`}>
             <div className="auth">
+              <div className={`auth-Verify ${verified ? "active" : ""}`}>
+                <h1>Wrong Username/Password</h1>
+              </div>
               <div className="email">
                 <label htmlFor="">Email</label>
                 <input
@@ -92,26 +150,30 @@ function Login() {
                 />
               </div>
               <div className="btn-container">
-                <Link to={`${!isAuth ? "/Dashboard" : "/admin"}`}>
-                  <button
-                    disabled={!email}
-                    type="submit"
-                    className="signIn"
-                    onClick={login}
-                  >
-                    Sign in
-                  </button>
-                </Link>
-                <button type="submit" className="signUp" onClick={handelFlip}>
-                  Sign Up
+                {/* `${!isAuth ? "/Dashboard" : "/admin"}` */}
+
+                {/* <Link to="/Dashboard"> */}
+                <button
+                  // disabled={isAuth}
+                  type="submit"
+                  className="signIn"
+                  onClick={login}
+                >
+                  log in
                 </button>
+                {/* </Link> */}
               </div>
-              <h3>Forgot your password ?</h3>
+              <div className="password-extract">
+                <h3>Forgot your password ?</h3>
+              </div>
               {/* {loginStatus.map((loginStatus) => {
                   <h1>{loginStatus.email}</h1>;
                 })} */}
             </div>
             <div className="signUp-container">
+              <div className={`auth-Verify ${active ? "active" : ""}`}>
+                {successful && <h1>{successful}</h1>}
+              </div>
               <div className="email">
                 <label htmlFor="">Email</label>
                 <input
@@ -135,16 +197,10 @@ function Login() {
                 />
               </div>
               <div className="btn-container">
-                <Link to={"/login"}>
-                  <button type="submit" className="signIn" onClick={refresh}>
-                    <BiArrowBack color="#222" fontsize="1.3rem" />
-                  </button>
-                </Link>
                 <button
                   type="submit"
-                  className="signUp"
+                  className="signIn"
                   onClick={() => {
-                    handelFlip();
                     authInput();
                   }}
                 >
@@ -163,7 +219,17 @@ function Login() {
           </div>
         </div>
       </div>
-    </>
+      {/* <Routers>
+        <Switch>
+          <ProtectedRoute
+            path="/Dashboard"
+            exact
+            component={Dashboard}
+            isAuth={isAuth}
+          />
+        </Switch>
+      </Routers> */}
+    </div>
   );
 }
 

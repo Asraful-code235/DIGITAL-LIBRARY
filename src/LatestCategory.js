@@ -82,7 +82,8 @@ function LatestCategory() {
 
   return (
     <>
-      <section data-aos="fade-down-right" className="latestCategory">
+      {/* data-aos="fade-down-right" */}
+      <section className="latestCategory">
         <div className="container">
           <p className="Field">
             <label htmlFor="">Title</label>
@@ -199,6 +200,7 @@ function LatestCategory() {
           </div>
           <button
             type="submit"
+            disabled={!title}
             className="submit"
             onClick={() => {
               addBooks();

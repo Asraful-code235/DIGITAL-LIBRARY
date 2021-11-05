@@ -7,6 +7,7 @@ import NavbarDashboard from "./NavbarDashboard";
 import { Link } from "react-router-dom";
 
 import Admin from "./Admin";
+import AdminManagement from "./AdminManagement";
 
 function Dashboard() {
   return (
@@ -27,6 +28,11 @@ function Dashboard() {
             path="/Dashboard/BookManagement"
             exact
             component={LatestCategory}
+          />
+          <Route
+            path="/Dashboard/AdminManagement"
+            exact
+            component={AdminManagement}
           />
           <Route path="/Dashboard/LibraryManagement" exact component={Admin} />
           <Route path="/Dashboard" component={Sidebar} />

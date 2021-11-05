@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "./css/main.css";
 import Aos from "aos";
@@ -7,6 +7,7 @@ import { sliderInfo } from "./slider";
 import { categoryRight } from "./CategoryRight";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import FrontendInfo from "./FrontendInfo";
+import { Link } from "react-router-dom";
 
 function Hero() {
   useEffect(() => {
@@ -103,16 +104,25 @@ const Component1 = () => {
                     <h3 className="h3">{prop.txt}</h3>
                     <ul>
                       <li>
-                        <a href="#">{prop.item1}</a>
+                        <Link to="/items/CSE">{prop.item1}</Link>
                       </li>
                       <li>
-                        <a href="#">{prop.item2}</a>
+                        <Link to="/items/eee">{prop.item2}</Link>
                       </li>
                       <li>
-                        <a href="#">{prop.item3}</a>
+                        <Link to="/items/textile">{prop.item3}</Link>
                       </li>
                       <li>
-                        <a href="#">{prop.item4}</a>
+                        <Link to="/items/bba">{prop.item4}</Link>
+                      </li>
+                      <li>
+                        <Link to="/items/law">{prop.item5}</Link>
+                      </li>
+                      <li>
+                        <Link to="/items/story">{prop.item6}</Link>
+                      </li>
+                      <li>
+                        <Link to="/items/action">{prop.item7}</Link>
                       </li>
                     </ul>
                   </div>
@@ -134,7 +144,7 @@ const Component3 = () => {
           <Splide
             options={{
               type: "loop",
-              gap: "1.5rem",
+              gap: "1.2rem",
               autoplay: true,
               pauseOnHover: false,
               resetProgress: false,
