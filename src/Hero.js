@@ -86,7 +86,7 @@ const Component1 = () => {
                       alt=""
                     />
                   </span>
-                  <span className="txt">Department</span>
+                  <span className="txt">Category</span>
                 </div>
                 <i className="prefixed-icon"></i>
               </div>

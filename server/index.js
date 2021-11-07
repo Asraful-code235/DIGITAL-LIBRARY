@@ -5,12 +5,31 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const util = require("util");
+const bcrypt = require("bcryptjs");
+const { encrypt, decrypt } = require("./EncryptionHandler");
 const fileUpload = require("express-fileupload");
-const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
 app.use(cors());
 app.use(express.json());
 app.use("/public", express.static("public"));
 app.use("/public/images", express.static("public/images"));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  session({
+    key: "userId",
+    secret: "subscribe",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 60 * 60 * 24,
+    },
+  })
+);
+
 // app.use(
 //   fileUpload({
 //     createParentPath: true,
@@ -117,39 +136,99 @@ app.post("/pdf", upload.single("myPdf"), (req, res) => {
   );
 });
 //login auth
-app.post("/authentication", (req, res) => {
+app.post("/authentication", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  db.query(
-    "INSERT INTO auth (email, password) VALUES (?, ?)",
-    [email, password],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send("value inserted");
+  // const hashedPassword = encrypt(password);
+  try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    db.query(
+      "INSERT INTO auth (email, password) VALUES (?, ?)",
+      [email, hashedPassword],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("value inserted");
+        }
       }
-    }
-  );
+    );
+  } catch {
+    res.status(500).send();
+  }
 });
+// app.post("/login", (req, res) => {
+//   const email = req.body.email;
+//   // const password = req.body.password;
+//   const hashedPassword = encrypt(password);
+//   db.query(
+//     "SELECT * FROM auth WHERE email=? AND password=?",
+//     [email, password],
+//     (err, result) => {
+//       if (err) {
+//         res.send({ err: err });
+//       }
+
+//       if (result.length > 0) {
+//         res.send(result);
+//       } else {
+//         res.send({ message: "Wrong email/password" });
+//       }
+//     }
+//   );
+// });
+// app.post("/login", (req, res) => {
+//   try {
+//     const email = req.body.email;
+//     const password = req.body.password;
+//     db.connect(async (err, connection) => {
+//       if (err) res.send(err);
+//       const sqlSearch = "SELECT * FROM auth WHERE email = ?";
+//       const search_query = mysql.format(sqlSearch, [email]);
+//       db.query(search_query, async (err, result) => {
+//         if (err) res.send();
+//         if (result.length == 0) {
+//           console.log("User does not exist");
+//           res.status(500).send();
+//         } else {
+//           const hashedPassword = result[0].password;
+//           if (await bcrypt.compare(password, hashedPassword)) {
+//             console.log("login Successful");
+//             res.send("valid");
+//           } else {
+//             console.log("password incorrect");
+//             res.send("Password incorrect");
+//           }
+//         }
+//       });
+//     });
+//   } catch (e) {
+//     console.log("something broke");
+//     res.status(500).send();
+//   }
+// });
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  db.query(
-    "SELECT * FROM auth WHERE email=? AND password=?",
-    [email, password],
-    (err, result) => {
-      if (err) {
-        res.send({ err: err });
-      }
-
-      if (result.length > 0) {
-        res.send(result);
-      } else {
-        res.send({ message: "Wrong email/password" });
-      }
+  db.query("SELECT * FROM auth WHERE email = ?;", email, (err, result) => {
+    if (err) {
+      res.send({ err: err });
     }
-  );
+    if (result.length > 0) {
+      bcrypt.compare(password, result[0].password, (error, response) => {
+        if (response) {
+          req.session.user = result;
+          console.log(req.session.user);
+          res.send(result);
+        } else {
+          res.send({ message: "wrong user/password" });
+        }
+      });
+    } else {
+      res.send({ message: "User doesn't exist" });
+    }
+  });
 });
 
 // app.post("/post", upload.single("myPdf"), (req, res) => {

@@ -438,7 +438,14 @@ img {
         margin-top: 10px;
         display: none;
         z-index: 10;
-        // border: 2px solid yellow;
+
+        ul {
+            li {
+                &:not(:nth-of-type(even)) {
+                    background: rgba(0, 0, 0, 0.08);
+                }
+            }
+        }
 
 
 

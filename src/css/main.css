@@ -986,6 +986,10 @@ img {
   z-index: 10;
 }
 
+.home-category .category-right .category-list ul li:not(:nth-of-type(even)) {
+  background: rgba(0, 0, 0, 0.08);
+}
+
 .home-category .category-right .category-list.block {
   display: block;
 }
