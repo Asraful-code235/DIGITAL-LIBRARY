@@ -118,31 +118,38 @@ function ItemsShow() {
               <IoMdArrowDropdown color="#fff" fontSize="1.2rem" />
             </div>
           </div>
-          <li
+          {/* <li
             className={`${!linkAc ? "" : "defaultActive"}`}
             onClick={handelThird}
           >
             LATEST
-          </li>
+          </li> */}
         </ul>
         <div className={`category-books-items ${isActiveDd ? "active" : ""}`}>
           <div className="category-container">
             <h1>All Category</h1>
             <div className="container-wrap">
-              <li
-                onClick={() => {
-                  setCse("CSE");
-                  console.log(cse);
-                }}
-              >
-                CSE
-              </li>
-              <li>EEE</li>
-              <li>STORY</li>
-              <li>ACTION</li>
-              <li>TEXTILE</li>
-              <li>BBA</li>
-              <li>LAW</li>
+              <Link to="/items/CSE">
+                <li>CSE</li>
+              </Link>
+              <Link to="/items/eee">
+                <li>EEE</li>
+              </Link>
+              <Link to="/items/story">
+                <li>STORY</li>
+              </Link>
+              <Link to="/items/action">
+                <li>ACTION</li>
+              </Link>
+              <Link to="/items/textile">
+                <li>TEXTILE</li>
+              </Link>
+              <Link to="/items/bba">
+                <li>BBA</li>
+              </Link>
+              <Link to="/items/law">
+                <li>LAW</li>
+              </Link>
             </div>
           </div>
         </div>
