@@ -13,8 +13,8 @@ function Books() {
               Get instant access to millions of eBooks,Pdf,magazines at your
               home
             </p>
-            <Link to={"/login"}>
-              <button className="btn-subscribe">Sign Up</button>
+            <Link to="/">
+              <button className="btn-subscribe">Subscribe</button>
             </Link>
           </div>
         </div>

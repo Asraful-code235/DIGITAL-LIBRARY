@@ -15,12 +15,25 @@ import FirstNav from "./FirstNav";
 import Contact from "./Contact";
 import Login from "./Login";
 import FirstHoverItems from "./FirstHoverItems";
+import UserLogin from "./UserLogin";
 function App(props) {
+  const [isActive, setActive] = useState(false);
+  const handelLoginClick = () => {
+    setActive(!isActive);
+    console.log("works");
+  };
   return (
     <Router>
-      <Route path="/" exact component={Navbar} />
+      <Route
+        path="/"
+        exact
+        component={Navbar}
+        handelLoginClick={handelLoginClick}
+      />
       <Route path="/About" exact component={FirstNav} />
       <Route path="/items" component={Navbar} />
+      {/* <Route path="/user" exact isActive={isActive} component={UserLogin} /> */}
+
       <Route path="/Contact" exact component={FirstNav} />
       <Route path="/items/:Category" exact component={FirstHoverItems} />
 

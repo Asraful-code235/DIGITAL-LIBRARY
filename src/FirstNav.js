@@ -171,9 +171,9 @@ function FirstNav({ data }) {
                     </div>
                   );
                 })}
-                <Link to="/signup">
-                  <button className="signupFirst">Sign Up</button>
-                </Link>
+                {/* <Link to="/signup"> */}
+                <button className="signupFirst">Sign</button>
+                {/* </Link> */}
               </ul>
             </div>
           </div>

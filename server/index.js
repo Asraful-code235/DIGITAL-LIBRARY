@@ -158,60 +158,57 @@ app.post("/authentication", async (req, res) => {
     res.status(500).send();
   }
 });
-// app.post("/login", (req, res) => {
-//   const email = req.body.email;
-//   // const password = req.body.password;
-//   const hashedPassword = encrypt(password);
-//   db.query(
-//     "SELECT * FROM auth WHERE email=? AND password=?",
-//     [email, password],
-//     (err, result) => {
-//       if (err) {
-//         res.send({ err: err });
-//       }
-
-//       if (result.length > 0) {
-//         res.send(result);
-//       } else {
-//         res.send({ message: "Wrong email/password" });
-//       }
-//     }
-//   );
-// });
-// app.post("/login", (req, res) => {
-//   try {
-//     const email = req.body.email;
-//     const password = req.body.password;
-//     db.connect(async (err, connection) => {
-//       if (err) res.send(err);
-//       const sqlSearch = "SELECT * FROM auth WHERE email = ?";
-//       const search_query = mysql.format(sqlSearch, [email]);
-//       db.query(search_query, async (err, result) => {
-//         if (err) res.send();
-//         if (result.length == 0) {
-//           console.log("User does not exist");
-//           res.status(500).send();
-//         } else {
-//           const hashedPassword = result[0].password;
-//           if (await bcrypt.compare(password, hashedPassword)) {
-//             console.log("login Successful");
-//             res.send("valid");
-//           } else {
-//             console.log("password incorrect");
-//             res.send("Password incorrect");
-//           }
-//         }
-//       });
-//     });
-//   } catch (e) {
-//     console.log("something broke");
-//     res.status(500).send();
-//   }
-// });
+//signup users
+app.post("/user", async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  // const hashedPassword = encrypt(password);
+  try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    db.query(
+      "INSERT INTO users (email, password) VALUES (?, ?)",
+      [email, hashedPassword],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("value inserted");
+        }
+      }
+    );
+  } catch {
+    res.status(500).send();
+  }
+});
+//matching password for admin
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   db.query("SELECT * FROM auth WHERE email = ?;", email, (err, result) => {
+    if (err) {
+      res.send({ err: err });
+    }
+    if (result.length > 0) {
+      bcrypt.compare(password, result[0].password, (error, response) => {
+        if (response) {
+          req.session.user = result;
+          console.log(req.session.user);
+          res.send(result);
+        } else {
+          res.send({ message: "wrong user/password" });
+        }
+      });
+    } else {
+      res.send({ message: "User doesn't exist" });
+    }
+  });
+});
+//matching password for normal users
+app.post("/userLogin", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  db.query("SELECT * FROM users WHERE email = ?;", email, (err, result) => {
     if (err) {
       res.send({ err: err });
     }
