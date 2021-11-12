@@ -29,7 +29,7 @@ function About({ match }) {
   };
   return (
     <>
-      <div className="about-container">
+      <div className="about-container" style={{ height: "100vh" }}>
         <div className="download-info">
           <h2>Click here to download...</h2>
 

@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 function LatestCategory() {
   useEffect(() => {
@@ -79,61 +87,97 @@ function LatestCategory() {
   //   setFile({ ...newFile, profilePdf: e.target.files[0] });
   //   console.log(e.target.files[0].name);
   // };
+  //material ui
+  const [Department, setDepartment] = useState("");
+
+  const handleChange = (event) => {
+    setDepartment(event.target.value);
+    setCategory(event.target.value);
+  };
 
   return (
     <>
       {/* data-aos="fade-down-right" */}
       <section className="latestCategory">
         <div className="container">
-          <p className="Field">
-            <label htmlFor="">Title</label>
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Enter book title"
+          <Box
+            style={{ padding: "10px 0" }}
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              className="Box"
+              id="outlined-basic"
+              label="Title"
+              variant="outlined"
               onChange={(event) => {
                 setTitle(event.target.value);
               }}
             />
-          </p>
-          <p className="Field">
-            <label htmlFor="">Author</label>
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Enter author name"
+          </Box>
+          <Box
+            component="form"
+            style={{ padding: "10px 0" }}
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Author"
+              variant="outlined"
               onChange={(event) => {
                 setAuthor(event.target.value);
               }}
             />
-          </p>
-          <p className="Field">
-            <label htmlFor="">Category</label>
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder="Enter category"
+          </Box>
+
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={Department}
+                label="Department"
+                onChange={handleChange}
+              >
+                <MenuItem value={"CSE"}>CSE</MenuItem>
+                <MenuItem value={"EEE"}>EEE</MenuItem>
+                <MenuItem value={"BBA"}>BBA</MenuItem>
+                <MenuItem value={"LAW"}>LAW</MenuItem>
+                <MenuItem value={"TEXTILE"}>TEXTILE</MenuItem>
+                <MenuItem value={"STORY"}>STORY</MenuItem>
+                <MenuItem value={"ACTION"}>ACTION</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1 },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              type="number"
+              label="Price"
+              variant="outlined"
               onChange={(event) => {
-                setCategory(event.target.value);
+                setPrice(event.target.value);
               }}
             />
-          </p>
-          {/* <p className="Field">
-            <label htmlFor="">Date</label>
-            <input
-              type="datetime-local"
-              name=""
-              id=""
-              placeholder="Enter time"
-              onChange={(event) => {
-                setAuthor(event.target.value);
-              }}
-            />
-          </p> */}
-          <p className="Field ">
+          </Box>
+          {/* <p className="Field ">
             <label htmlFor="">Price</label>
             <input
               type="number"
@@ -144,9 +188,21 @@ function LatestCategory() {
                 setPrice(event.target.value);
               }}
             />
-          </p>
+          </p> */}
+          <div className="mb-3">
+            <label for="formFile" className="form-label">
+              Image
+            </label>
+            <input
+              className="form-control"
+              type="file"
+              id="formFile"
+              name="myfile"
+              onChange={imageUpload}
+            />
+          </div>
 
-          <div className="Dashboard_crud">
+          {/* <div className="Dashboard_crud">
             <label htmlFor="">Image</label>
             <input
               type="file"
@@ -156,71 +212,57 @@ function LatestCategory() {
               autoComplete="off"
               onChange={imageUpload}
             />
-          </div>
-          <div className="Dashboard_crud">
-            <p className="title-display-none ">
-              <label htmlFor="">Title</label>
-              <input
-                type="text"
-                name=""
-                id=""
-                placeholder="Enter book Title"
-                onChange={(event) => {
-                  setPdfTitle(event.target.value);
-                }}
-              />
-            </p>
-            <p className="Field ">
-              <div className="pdfInfo-container">
-                <h4>CurrentId---:{lastId.id}</h4>
-                <h4>Enter next id:</h4>
-              </div>
-              <input
-                type="number"
-                name=""
-                id=""
-                placeholder="Enter id of Book"
+          </div> */}
+
+          <p className="Field ">
+            <h4>CurrentId---:{lastId.id}</h4>
+            <Box
+              component="form"
+              sx={{
+                "& > :not(style)": { m: 1 },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="outlined-basic"
+                label="Enter the next number"
+                variant="outlined"
+                value={PdfId}
                 onChange={(event) => {
                   setPdfId(event.target.value);
                 }}
               />
-            </p>
+            </Box>
+          </p>
 
-            <label htmlFor="">Pdf</label>
+          <div className="mb-3">
+            <label for="formFile" className="form-label">
+              PDF
+            </label>
             <input
+              className="form-control"
               type="file"
+              id="formFile"
               name="myPdf"
-              autoComplete="off"
               onChange={pdfUpload}
-              required
             />
-            {/* <button className="submit" onClick={addPdfs}>
+          </div>
+
+          {/* <button className="submit" onClick={addPdfs}>
               Pdf Submit
             </button> */}
-          </div>
-          <button
-            type="submit"
-            disabled={!title}
-            className="submit"
+
+          <Button
+            disabled={!PdfId}
+            variant="contained"
             onClick={() => {
               addBooks();
               addPdfs();
             }}
           >
             Add
-          </button>
-
-          {/* <div>
-            {bookList.map((val) => {
-              return (
-                <div className="containerBooks">
-                  <h1>{val.Title}</h1>
-                  <p>{val.Author}</p>
-                  <h4>{val.Price}</h4>
-                </div>
-              );
-            })}
-          </div> */}
+          </Button>
         </div>
       </section>
     </>

@@ -9,7 +9,7 @@ function FrontendCover() {
           <div className="info-wrap">
             <div className="info">
               <h1>THE BEST BOOKS AND MAGAZINES ARE WAITING FOR YOU </h1>
-              <Link to={"/"}>
+              <Link to={"/Subcription"}>
                 <button className="sign-up">Subscribe</button>
               </Link>
             </div>

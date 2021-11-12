@@ -5,8 +5,9 @@
     padding: 0;
     // border: 1px solid transparent;
     position: relative;
-
+    // background: red;
     // border: 2px solid red;
+
     @include for-mini-phone {
         height: 200px;
     }
@@ -137,7 +138,7 @@
 .itemDetails-container {
     padding: 20px 0 0 0;
     // background: #fff;
-    background: #fff;
+    background: rgb(249, 255, 255);
 
     // border: 2px solid red;
 
@@ -191,8 +192,9 @@
             padding: 0px 0 0 0;
             // border: 2px solid blue;
             display: grid;
-            background: rgba(0, 0, 0, 0.07);
+            background: rgba(0, 0, 0, 0.1);
 
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             // margin-top: -20px;
             // flex-direction: row;
             grid-template-columns: 1fr 3fr;
@@ -223,7 +225,7 @@
 
         .img-book-container {
             display: grid;
-            grid-template-rows: 5fr 0.5fr 0.5fr;
+            grid-template-rows: 5fr 0.5fr;
             // flex-direction: column;
             // justify-content: center;
             padding: 0;
@@ -778,38 +780,6 @@
                     // margin-left: 35px;
                 }
 
-                // .shelf-shadows {
-                //     position: absolute;
-                //     bottom: 0;
-                //     left: 0;
-                //     width: 100%;
-                //     height: 1rem;
-                //     border-radius: 2px;
-                //     -webkit-border-radius: 2px;
-                //     -moz-border-radius: 2px;
-                //     -ms-border-radius: 2px;
-                //     -o-border-radius: 2px;
-                //     z-index: 1;
-
-                //     box-shadow: 0px -5px 3px 0px rgba(rgb(170, 170, 170), 0.2),
-                //         0px 15px 20px 0px rgba(#aaa, 0.7),
-                //         0px 5px 5px 0px rgba(#777, 0.3);
-                // }
-
-                // .shelf {
-                //     position: absolute;
-                //     bottom: 0;
-                //     left: 0;
-                //     width: 100%;
-                //     height: 1rem;
-                //     border-radius: 2px;
-                //     -webkit-border-radius: 2px;
-                //     -moz-border-radius: 2px;
-                //     -ms-border-radius: 2px;
-                //     -o-border-radius: 2px;
-                //     z-index: 3;
-                //     color: #f9f9f9;
-                // }
 
             }
 
@@ -881,6 +851,56 @@
             display: none;
             // opacity: 0;
             // pointer-events: none;
+        }
+    }
+}
+
+.feedback {
+    // border: 2px solid red;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    margin-top: 60px;
+
+    >label {
+        padding: 10px 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1e7b85;
+
+    }
+
+    >textarea {
+        border-radius: 4px;
+        width: 100%;
+        padding: 10px;
+        outline: 1px solid #1e7b85;
+        border: none;
+    }
+
+    >button {
+        padding: 10px 34px;
+        margin-top: 10px;
+        background: #1e7b85;
+        color: #fff;
+        border: 1px solid #1e7b85;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: background 1s;
+        cursor: pointer;
+
+        &:hover {
+            background: #014d33 radial-gradient(circle, #1e7b85 1%, rgba(6, 83, 38, 0.07) 1%) center/15000%;
+        }
+
+        &:active {
+            background-color: #1e7b85;
+            background-size: 100%;
+            transition: background 0s;
         }
     }
 }

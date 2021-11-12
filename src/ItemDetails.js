@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import PdfViewer from "./PdfViewer";
 
 function ItemDetails({ match }) {
   //   const [id] = useParams();
@@ -40,7 +41,7 @@ function ItemDetails({ match }) {
       .then((response) => {
         setCategoryList(response.data);
 
-        // console.log(response.data);
+        console.log(response.data);
       });
   };
   //   getBooks();
@@ -69,7 +70,31 @@ function ItemDetails({ match }) {
   function refreshPage() {
     window.location.reload(false);
   }
+  //Feedback option
+  const [feedback, setFeedBack] = useState("");
+  const handelFeedback = () => {
+    axios
+      .post("http://localhost:3001/feedback", { feedback: feedback })
+      .then((res) => {
+        console.log("successful");
+      });
+  };
 
+  //get pdf
+  // const [pdfList, setPdfList] = useState([]);
+  // const getPdf = () => {
+  //   console.log("words");
+  //   axios
+  //     .get(
+  //       `http://localhost:3001/Books/${match.params.id}/Category
+  //       `
+  //     )
+  //     .then((response) => {
+  //       setPdfList(response.data[0]);
+
+  //       console.log(response.data[0]);
+  //     });
+  // };
   return (
     <div>
       <div className="itemDetails-container">
@@ -86,10 +111,16 @@ function ItemDetails({ match }) {
                   />
                 )}
               </div>
-              <button>View Pdf</button>
+              {/* <button>View Pdf</button> */}
               <div className="download-btn">
                 <Link to={`/Books/${paramsId}/${match.params.category}/pdf`}>
-                  <button className="pdfDownload">Download </button>
+                  <button className="pdfDownload">Download</button>
+                  {/* {pdfList.pdf && (
+                    <img
+                      src={`http://localhost:3001/public/${pdfList.pdf}`}
+                      alt="pdf"
+                    />
+                  )} */}
                 </Link>
               </div>
             </div>
@@ -179,7 +210,24 @@ function ItemDetails({ match }) {
             </button>
           </div>
         </div>
+        <div className="feedback">
+          <label htmlFor="Feedback">Feedback</label>
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Give us your feedback"
+            onChange={(e) => {
+              setFeedBack(e.target.value);
+            }}
+          ></textarea>
+          <button type="submit" onClick={handelFeedback}>
+            Submit
+          </button>
+        </div>
       </div>
+
       <Footer />
     </div>
   );

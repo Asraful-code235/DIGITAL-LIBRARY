@@ -97,44 +97,68 @@ db.connect(function (err) {
 });
 app.post("/create", upload.single("myfile"), (req, res) => {
   const title = req.body.title;
-  const author = req.body.author;
-  const category = req.body.category;
-  const price = req.body.price;
-  const image = req.file.filename;
-  // const pdf = req.file.filename;
-  db.query(
-    "INSERT INTO books (title, author,category, price,image) VALUES(?,?,?,?,?)",
-    [title, author, category, price, image],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send("values Inserted");
+  try {
+    const author = req.body.author;
+    const category = req.body.category;
+    const price = req.body.price;
+    const image = req.file.filename;
+    // const pdf = req.file.filename;
+    db.query(
+      "INSERT INTO books (title, author,category, price,image) VALUES(?,?,?,?,?)",
+      [title, author, category, price, image],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("values Inserted");
+        }
       }
-    }
-  );
+    );
+  } catch {
+    console.log("something went wrong");
+  }
 });
 //pdf input
 app.post("/pdf", upload.single("myPdf"), (req, res) => {
-  const title = req.body.title;
-  const id = req.body.id;
-  // const author = req.body.author;
-  // const category = req.body.category;
-  // const price = req.body.price;
-  // const image = req.file.filename;
-  const pdf = req.file.filename;
-  db.query(
-    "INSERT INTO pdf (title,id,pdf) VALUES(?,?,?)",
-    [title, id, pdf],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send("values Inserted");
+  try {
+    const title = req.body.title;
+    const id = req.body.id;
+    const pdf = req.file.filename;
+    db.query(
+      "INSERT INTO pdf (title,id,pdf) VALUES(?,?,?)",
+      [title, id, pdf],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("values Inserted");
+        }
       }
-    }
-  );
+    );
+  } catch {
+    console.log("Value not inserted");
+  }
 });
+//feedback
+app.post("/feedback", (req, res) => {
+  try {
+    const feedback = req.body.feedback;
+    db.query(
+      "INSERT INTO feedback (feedback) VALUES(?)",
+      feedback,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send("value inserted");
+        }
+      }
+    );
+  } catch {
+    console.log("Feedback not received");
+  }
+});
+
 //login auth
 app.post("/authentication", async (req, res) => {
   const email = req.body.email;
@@ -185,292 +209,305 @@ app.post("/user", async (req, res) => {
 app.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  db.query("SELECT * FROM auth WHERE email = ?;", email, (err, result) => {
-    if (err) {
-      res.send({ err: err });
-    }
-    if (result.length > 0) {
-      bcrypt.compare(password, result[0].password, (error, response) => {
-        if (response) {
-          req.session.user = result;
-          console.log(req.session.user);
-          res.send(result);
-        } else {
-          res.send({ message: "wrong user/password" });
-        }
-      });
-    } else {
-      res.send({ message: "User doesn't exist" });
-    }
-  });
+  try {
+    db.query("SELECT * FROM auth WHERE email = ?;", email, (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      }
+      if (result.length > 0) {
+        bcrypt.compare(password, result[0].password, (error, response) => {
+          if (response) {
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({ message: "wrong user/password" });
+          }
+        });
+      } else {
+        res.send({ message: "User doesn't exist" });
+      }
+    });
+  } catch {
+    console.log("Something went wrong");
+  }
 });
 //matching password for normal users
 app.post("/userLogin", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  db.query("SELECT * FROM users WHERE email = ?;", email, (err, result) => {
-    if (err) {
-      res.send({ err: err });
-    }
-    if (result.length > 0) {
-      bcrypt.compare(password, result[0].password, (error, response) => {
-        if (response) {
-          req.session.user = result;
-          console.log(req.session.user);
-          res.send(result);
-        } else {
-          res.send({ message: "wrong user/password" });
-        }
-      });
-    } else {
-      res.send({ message: "User doesn't exist" });
-    }
-  });
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    db.query("SELECT * FROM users WHERE email = ?;", email, (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      }
+      if (result.length > 0) {
+        bcrypt.compare(password, result[0].password, (error, response) => {
+          if (response) {
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({ message: "wrong user/password" });
+          }
+        });
+      } else {
+        res.send({ message: "User doesn't exist" });
+      }
+    });
+  } catch {
+    console.log("Something went wrong");
+  }
 });
-
-// app.post("/post", upload.single("myPdf"), (req, res) => {
-//   const pdf = req.file.filename;
-//   // const pdf = req.file.filename;
-//   db.query("INSERT INTO pdfs (pdf) VALUES(?)", pdf, (err, result) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       res.send("values Inserted");
-//     }
-//   });
-// });
-// app.post("/post", async (req, res) => {
-//   try {
-//     if (!req.files) {
-//       res.send({
-//         status: false,
-//         message: "NO files",
-//       });
-//     } else {
-//       const { myFile } = req.files;
-//       myFile.mv("./public" + myFile.name);
-//       res.send({
-//         status: true,
-//         message: "File is uploaded",
-//       });
-//     }
-//   } catch (e) {
-//     res.status(500).send(e);
-//   }
-// });
 
 app.get("/books", (req, res) => {
-  db.query("SELECT * FROM books", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
-app.get(`/Books/:id`, (req, res) => {
-  db.query("SELECT * FROM books where id= ?", req.params.id, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result);
-      res.send(result);
-    }
-  });
-});
-app.get(`/Books/:id/:Category`, (req, res) => {
-  db.query(
-    "SELECT * FROM books WHERE Category = 'CSE' ",
-    // req.params.id,
-    req.params.Category,
-    (err, result) => {
+  try {
+    db.query("SELECT * FROM books", (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        // console.log(result);
         res.send(result);
       }
-    }
-  );
+    });
+  } catch {
+    console.log("something went wrong");
+  }
+});
+app.get(`/Books/:id`, (req, res) => {
+  try {
+    db.query(
+      "SELECT * FROM books where id= ?",
+      req.params.id,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  } catch {
+    console.log("Something went wrong");
+  }
+});
+app.get(`/Books/:id/:Category`, (req, res) => {
+  try {
+    db.query(
+      "SELECT * FROM books WHERE Category = ? ",
+      // req.params.id,
+      req.params.Category,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  } catch {
+    console.log("Something went wrong");
+  }
 });
 //get every category items
 app.get(`/items/:Category`, (req, res) => {
-  db.query(
-    "SELECT * FROM books WHERE Category = ? ",
-    // req.params.id,
-    req.params.Category,
-    (err, result) => {
+  try {
+    db.query(
+      "SELECT * FROM books WHERE Category = ? ",
+      // req.params.id,
+      req.params.Category,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  } catch {
+    console.log("Something went wrong");
+  }
+});
+//Getting the latest items from the database
+app.get(`/latest`, (req, res) => {
+  try {
+    db.query("SELECT * FROM books ORDER BY id DESC LIMIT  5", (err, result) => {
       if (err) {
         console.log(err);
       } else {
         // console.log(result);
         res.send(result);
       }
-    }
-  );
+    });
+  } catch {
+    console.log("something went wrong");
+  }
 });
-//Getting the latest items from the database
-app.get(`/latest`, (req, res) => {
-  db.query("SELECT * FROM books ORDER BY id DESC LIMIT  5", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result);
-      res.send(result);
-    }
-  });
+//getNumber of books
+app.get(`/countBooks`, (req, res) => {
+  try {
+    db.query("SELECT  * FROM books ", (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.send(result);
+      }
+    });
+  } catch {
+    console.log("something went wrong");
+  }
 });
 
 //SELECT * FROM librarysystem.pdf INNER JOIN librarysystem.books WHERE librarysystem.pdf.Title=librarysystem.books.Title;
 
 app.get(`/Books/:id/:Category/pdf`, (req, res) => {
   // const pdf = req.body.pdfId;
-  db.query(
-    "SELECT * FROM pdf WHERE id= ?",
+  try {
+    db.query(
+      "SELECT * FROM pdf WHERE id= ?",
 
-    req.params.id,
-    // req.params.Category,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        // console.log(result);
-        res.send(result);
+      req.params.id,
+      // req.params.Category,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // console.log(result);
+          res.send(result);
+        }
       }
-    }
-  );
+    );
+  } catch {
+    console.log("something went wrong");
+  }
 });
 //SELECT id FROM librarysystem.books WHERE id=(SELECT MAX(id)from librarysystem.books);
 //getting last id for pdf insertion purposes
 app.get(`/lastId`, (req, res) => {
-  db.query(
-    "SELECT id FROM books WHERE id=(SELECT MAX(id)from books);",
-    // req.params.id,
-    // req.params.Category,
-    (err, result) => {
+  try {
+    db.query(
+      "SELECT id FROM books WHERE id=(SELECT MAX(id)from books);",
+      // req.params.id,
+      // req.params.Category,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  } catch {
+    console.log("Something went wrong");
+  }
+});
+//SELECT * FROM librarysystem.auth;
+app.get(`/users`, (req, res) => {
+  try {
+    db.query("SELECT * FROM auth", (err, result) => {
       if (err) {
         console.log(err);
       } else {
         // console.log(result);
         res.send(result);
       }
-    }
-  );
-});
-//SELECT * FROM librarysystem.auth;
-app.get(`/users`, (req, res) => {
-  db.query("SELECT * FROM auth", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result);
-      res.send(result);
-    }
-  });
+    });
+  } catch {
+    console.log("something went wrong");
+  }
 });
 
 //updating database
 app.put("/update", (req, res) => {
-  const id = req.body.id;
-  const title = req.body.title;
+  try {
+    const id = req.body.id;
+    const title = req.body.title;
 
-  db.query(
-    "UPDATE books SET title = ? WHERE id= ?",
-    [title, id],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
+    db.query(
+      "UPDATE books SET title = ? WHERE id= ?",
+      [title, id],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
       }
-    }
-  );
+    );
+  } catch {
+    console.log("Something went wrong");
+  }
 });
-// app.post("/pdf", upload.single("myPdf"), (req, res) => {
-//   const id = req.body.id;
-//   const pdf = req.file.filename;
-
-//   db.query(
-//     "INSERT INTO books COLUMN pdf = ? WHERE id= ?",
-//     [pdf, id],
-//     (err, result) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         res.send(result);
-//       }
-//     }
-//   );
-// });
 app.put("/author", (req, res) => {
-  const id = req.body.id;
-  const author = req.body.author;
-  db.query(
-    "UPDATE books SET author= ? WHERE id= ?",
-    [author, id],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
+  try {
+    const id = req.body.id;
+    const author = req.body.author;
+    db.query(
+      "UPDATE books SET author= ? WHERE id= ?",
+      [author, id],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
       }
-    }
-  );
+    );
+  } catch {
+    console.log("Something went wrong");
+  }
 });
 app.put("/price", (req, res) => {
-  const id = req.body.id;
-  const price = req.body.price;
-  db.query(
-    "UPDATE books SET price= ? WHERE id= ?",
-    [price, id],
-    (err, result) => {
+  try {
+    const id = req.body.id;
+    const price = req.body.price;
+    db.query(
+      "UPDATE books SET price= ? WHERE id= ?",
+      [price, id],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  } catch {
+    console.log("Something went wrong");
+  }
+});
+app.delete("/delete/:id", (req, res) => {
+  try {
+    const id = req.params.id;
+    db.query("DELETE FROM books WHERE id=?", id, (err, result) => {
       if (err) {
         console.log(err);
       } else {
         res.send(result);
       }
-    }
-  );
-});
-// app.post("/image", upload.single("myfile"), (req, res) => {
-//   const id = req.body.id;
-//   const image = req.file.filename;
-//   db.query(
-//     "UPDATE books SET image= ? WHERE id= ?",
-//     [image, id],
-//     (err, result) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//         res.send(result);
-//         console.log(result);
-//       }
-//     }
-//   );
-// });
-
-//deleting from database
-
-app.delete("/delete/:id", (req, res) => {
-  const id = req.params.id;
-  db.query("DELETE FROM books WHERE id=?", id, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
+    });
+  } catch {
+    console.log("Books not deleted");
+  }
 });
 //delete user from database
 app.delete("/users/:id", (req, res) => {
-  const id = req.params.id;
-  db.query("DELETE FROM auth WHERE id=?", id, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
+  try {
+    const id = req.params.id;
+    db.query("DELETE FROM auth WHERE id=?", id, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  } catch {
+    console.log("User not deleted");
+  }
 });
 
 app.listen(3001, () => {

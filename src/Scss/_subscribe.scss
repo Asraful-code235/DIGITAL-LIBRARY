@@ -1,0 +1,110 @@
+.Subscribe-container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2.2fr 3fr;
+
+    place-items: center;
+    transition: all 300ms ease-in-out;
+
+    // border: 2px solid red;
+    .subscribeBtnLink {
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: coral;
+            transform: scale(1.2);
+        }
+    }
+
+    .info-container-subscribe {
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 1);
+        display: grid;
+        place-items: center;
+        // margin-left: 200px;
+
+        .into-item-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin-left: 260px;
+
+            h1 {
+                font-size: 32px;
+                color: rgba(9, 14, 11, 0.9);
+                margin: 10px 0;
+            }
+
+            p {
+                font-size: 16px;
+                color: rgba(9, 14, 11, 0.9);
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .Subscribe-btn {
+                margin-top: 40px;
+                padding: 14px 75px;
+                background: #fff;
+                border-left: 4px solid rgba(190, 34, 183, 0.6);
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                color: lightslategray;
+                margin-bottom: 20px;
+            }
+
+
+        }
+
+
+        .icons {
+            // border: 2px solid red;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            i {
+                width: 55px;
+                height: 55px;
+                margin-right: 5px;
+            }
+
+            .subscribeBtnLink {
+                font-size: 25px;
+
+            }
+        }
+
+        .scroll-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            h4 {
+                font-size: 20px;
+                padding: 10px 0 0 0;
+                margin-right: 20px;
+            }
+
+            .subscribeBtnLink {
+                font-size: 20px;
+                // border: 2px solid red;
+                // padding: 10px;
+                color: lightslategray;
+            }
+        }
+
+    }
+
+    .image-container {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(17, 188, 211, 0.9), rgba(190, 34, 183, 0.6));
+    }
+}

@@ -16,23 +16,18 @@ import Contact from "./Contact";
 import Login from "./Login";
 import FirstHoverItems from "./FirstHoverItems";
 import UserLogin from "./UserLogin";
+import PdfViewer from "./PdfViewer";
+import Subcription from "./Subcription";
 function App(props) {
-  const [isActive, setActive] = useState(false);
-  const handelLoginClick = () => {
-    setActive(!isActive);
-    console.log("works");
-  };
   return (
     <Router>
-      <Route
-        path="/"
-        exact
-        component={Navbar}
-        handelLoginClick={handelLoginClick}
-      />
+      <Route path="/" exact component={Navbar} />
       <Route path="/About" exact component={FirstNav} />
+      <Route path="/Books/:id/:category/pdf" exact component={FirstNav} />
+      <Route path="/Subcription" exact component={Subcription} />
+
       <Route path="/items" component={Navbar} />
-      {/* <Route path="/user" exact isActive={isActive} component={UserLogin} /> */}
+      <Route path="/view" exact component={PdfViewer} />
 
       <Route path="/Contact" exact component={FirstNav} />
       <Route path="/items/:Category" exact component={FirstHoverItems} />
@@ -51,6 +46,7 @@ function App(props) {
       <Route path="/items" component={Footer} />
       <Route path="/About" exact component={DigitalLInfo} />
       {/* <Route path="/About" exact component={Footer} /> */}
+      <Route path="/Books/:id/:category/pdf" exact component={ItemDetails} />
 
       <Route path="/Books/:id/:category/pdf" exact component={About} />
       <Route path="/Books/:id/:category" exact component={ItemDetails} />

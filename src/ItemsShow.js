@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import FirstNav from "./FirstNav";
+
 function ItemsShow() {
   useEffect(() => {
     Aos.init({ duration: 2500 });

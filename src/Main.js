@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Charts from "./Charts";
 import logo from "./images/women.PNG";
+import axios from "axios";
 
 function Main() {
+  useEffect(() => {
+    NumberOfBooks();
+    return () => {
+      NumberOfBooks();
+    };
+  }, []);
+  const [booksNumber, setBooksNumber] = useState([]);
+  const NumberOfBooks = () => {
+    axios.get("http://localhost:3001/countBooks").then((response) => {
+      setBooksNumber(response.data.length);
+      // console.log(response.data.length);
+    });
+  };
   return (
     <main>
       <div className="main_container">
@@ -18,7 +32,7 @@ function Main() {
             <i className="fa fa-user-o fa-2x text-lightblue"></i>
             <div className="card_inner">
               <p className="text-primary-p">Number of Books</p>
-              <span className="font-bold text-title">578</span>
+              <span className="font-bold text-title">{booksNumber}</span>
             </div>
           </div>
           <div className="card">
