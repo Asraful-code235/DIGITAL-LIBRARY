@@ -5,16 +5,6 @@ import axios from "axios";
 import { FaFacebookSquare } from "react-icons/fa";
 import { AiOutlineGooglePlus } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
-
-import UserLogin from "./UserLogin";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  useHistory,
-} from "react-router-dom";
-import { MdInvertColorsOff } from "react-icons/md";
-
 function Navbar() {
   const [isActive, setActive] = useState(false);
   const [isOpen, setOpen] = useState(false);
@@ -30,7 +20,6 @@ function Navbar() {
     console.log("clicked");
   };
   //login features
-  const history = useHistory();
   const [rightPanelActive, setRightPanelActive] = useState(false);
   const handelRightPanel = () => {
     setRightPanelActive(!rightPanelActive);
@@ -59,7 +48,7 @@ function Navbar() {
       });
   };
   //Authenticate users
-  const [loginTrue, setLoginTrue] = useState([]);
+  // const [loginTrue, setLoginTrue] = useState([]);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [activeLog, setActiveLog] = useState(false);
@@ -81,10 +70,10 @@ function Navbar() {
       })
       .then((response) => {
         if (response.data.message) {
-          setLoginTrue(response.data.message);
+          // setLoginTrue(response.data.message);
           setLoggedIn("Wrong username/password");
         } else {
-          setLoginTrue(response.data[0]);
+          // setLoginTrue(response.data[0]);
           console.log("Authenticated");
           setActiveLog(!activeLog);
           setClicked("Log Out");

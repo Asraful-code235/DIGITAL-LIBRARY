@@ -121,12 +121,11 @@ app.post("/create", upload.single("myfile"), (req, res) => {
 //pdf input
 app.post("/pdf", upload.single("myPdf"), (req, res) => {
   try {
-    const title = req.body.title;
     const id = req.body.id;
     const pdf = req.file.filename;
     db.query(
-      "INSERT INTO pdf (title,id,pdf) VALUES(?,?,?)",
-      [title, id, pdf],
+      "INSERT INTO pdf (id,pdf) VALUES(?,?)",
+      [id, pdf],
       (err, result) => {
         if (err) {
           console.log(err);

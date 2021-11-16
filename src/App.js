@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
-import FrontendCover from "./FrontendCover";
+
 import Books from "./Books";
 import Footer from "./Footer";
 import About from "./About";
@@ -11,34 +11,39 @@ import ItemDetails from "./ItemDetails";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Signup from "./Signup";
 import ProtectedRoute from "./ProtectedRoute";
-import FirstNav from "./FirstNav";
+
 import Contact from "./Contact";
-import Login from "./Login";
+
 import FirstHoverItems from "./FirstHoverItems";
-import UserLogin from "./UserLogin";
+
 import PdfViewer from "./PdfViewer";
 import Subcription from "./Subcription";
 function App(props) {
   return (
     <Router>
-      <Route path="/" exact component={Navbar} />
-      <Route path="/About" exact component={FirstNav} />
-      <Route path="/Books/:id/:category/pdf" exact component={FirstNav} />
-      <Route path="/Subcription" exact component={Subcription} />
+      <Switch>
+        <Route path="/admin" exact component={Signup} />
+        <Navbar />
+      </Switch>
 
-      <Route path="/items" component={Navbar} />
+      {/* <Route path="/" exact component={Navbar} /> */}
+      {/* <Route path="/About" exact component={FirstNav} /> */}
+      {/* <Route path="/Books/:id/:category/pdf" exact component={FirstNav} /> */}
+      <Route path="/Subscription" exact component={Subcription} />
+
+      {/* <Route path="/items" component={Navbar} /> */}
       <Route path="/view" exact component={PdfViewer} />
 
-      <Route path="/Contact" exact component={FirstNav} />
+      {/* <Route path="/Contact" exact component={FirstNav} /> */}
       <Route path="/items/:Category" exact component={FirstHoverItems} />
 
       <Route path="/" exact component={Hero} />
       <Route path="/Contact" exact component={Contact} />
 
-      <Route path="/" exact component={FrontendCover} />
+      {/* <Route path="/" exact component={FrontendCover} /> */}
       <Route path="/" exact component={Footer} />
-      <Route path="/Books" exact component={FirstNav} />
-      <Route path="/Books/:id/:category" exact component={Navbar} />
+      {/* <Route path="/Books" exact component={FirstNav} /> */}
+      {/* <Route path="/Books/:id/:category" exact component={Navbar} /> */}
 
       <Route path="/Books" exact component={Books} />
       <Route path="/Books" exact component={Footer} />
@@ -46,7 +51,7 @@ function App(props) {
       <Route path="/items" component={Footer} />
       <Route path="/About" exact component={DigitalLInfo} />
       {/* <Route path="/About" exact component={Footer} /> */}
-      <Route path="/Books/:id/:category/pdf" exact component={ItemDetails} />
+      {/* <Route path="/Books/:id/:category/pdf" exact component={ItemDetails} /> */}
 
       <Route path="/Books/:id/:category/pdf" exact component={About} />
       <Route path="/Books/:id/:category" exact component={ItemDetails} />
@@ -54,7 +59,7 @@ function App(props) {
 
       {/* <Route path="/about" exact component={About} /> */}
 
-      <Route path="/Admin" exact component={Signup} />
+      {/* <Route path="/Admin" exact component={Signup} /> */}
       {/* <Route path="/Admin" exact component={Authentication} /> */}
       {/* <Route path="/login" exact component={Login} /> */}
       <ProtectedRoute path="/Dashboard" exact component={Dashboard} />

@@ -66,22 +66,8 @@ function ItemsShow() {
     }
   };
   const [linkAc, setLinkAc] = useState(false);
-  const handelThird = () => {
-    if (linkActive === false && linkAc === false) {
-      setLinkAc(!linkAc);
-      setLinkActive(!linkActive);
-      // setActiveDd(isActiveDd);
 
-      // console.log("works");
-    } else if (linkAct === true && linkAc === false && isActiveDd === true) {
-      // console.log("nice");
-      setLinkAct(!linkAct);
-      setLinkAc(!linkAc);
-      setActiveDd(!isActiveDd);
-    }
-  };
   const [searchTerm, setSearchTerm] = useState("");
-  const [cse, setCse] = useState("");
 
   // getBooks();
   return (
@@ -157,7 +143,7 @@ function ItemsShow() {
       <div className="GridContainer">
         {bookList
           .filter((val) => {
-            if (searchTerm == "") {
+            if (searchTerm === "") {
               return val;
             } else if (
               val.Category.toLowerCase().includes(searchTerm.toLowerCase())

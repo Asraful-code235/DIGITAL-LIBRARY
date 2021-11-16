@@ -47,11 +47,11 @@ const CoreItems = [
   },
 ];
 function DigitalLInfo() {
-  const [info, setInfo] = useState(CoreItems);
+  const [info] = useState(CoreItems);
   return (
     <>
       <div className="about-container">
-        <div className="container">
+        <div className="AboutUs-container">
           <div className="about-inner">
             <div className="text">
               <h1>WHAT WE DO</h1>
@@ -75,11 +75,8 @@ function DigitalLInfo() {
           <h1>OUR CORE VALUES</h1>
           <div className="valueContainer">
             <div className="items">
-              {info.map((props, index) => {
+              {info.map((props) => {
                 const { id, src, h1, highlight, p } = props;
-                {
-                  /* console.log(id, src); */
-                }
                 return (
                   <div key={id} className="items-container">
                     <div className="img-container-about">

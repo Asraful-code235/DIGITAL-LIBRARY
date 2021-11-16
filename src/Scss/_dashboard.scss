@@ -1042,11 +1042,12 @@ main {
             rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
         .imgContainer {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             // border: 2px solid blue;
-            flex-direction: row;
-            justify-content: center;
-            align-items: flex-start;
+            // flex-direction: row;
+            // justify-content: space-between;
+            // align-items: flex-start;
             text-align: start;
 
             .book-grid {
@@ -1062,10 +1063,16 @@ main {
 
             .info-header {
                 margin-left: 10px;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+                display: grid;
+                // grid-auto-flow: column;
+                grid-template-columns: 2fr 1fr;
                 align-items: flex-start;
+                gap: 10px;
+                place-items: start;
+                // flex-flow: row wrap;
+                // // flex-direction: row;
+                // justify-content: flex-start;
+                // align-items: flex-start;
                 height: 80px;
                 // border: 2px solid red;
 

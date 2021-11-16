@@ -28,12 +28,6 @@ function Contact() {
           </div>
         </div>
       </div>
-      <div className="contact-gesture">
-        <h1>HOW CAN WE HELP?</h1>
-        <div className="contact-help">
-          <h1>I have a book suggestion</h1>
-        </div>
-      </div>
     </div>
   );
 }

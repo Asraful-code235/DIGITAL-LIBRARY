@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
 
 function About({ match }) {
-  useEffect(() => {
-    handelParams();
-  }, []);
   // const [paramsId, setParamsId] = useState(0);
 
-  const handelParams = () => {
-    // setParamsId(match.params.id);
-    console.log(match.params);
-  };
   const [pdfList, setPdfList] = useState([]);
   const getPdf = () => {
     // console.log("words");
@@ -46,6 +38,7 @@ function About({ match }) {
             <button>Go back</button>
           </Link>
         </div>
+        {/* <Footer /> */}
       </div>
     </>
   );

@@ -8,13 +8,15 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 function LatestCategory() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
     getLastId();
+    return () => {
+      getLastId();
+    };
   }, []);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -48,7 +50,7 @@ function LatestCategory() {
       // console.log(formdata);
     });
   };
-  const [PdfTitle, setPdfTitle] = useState("");
+  const [PdfTitle] = useState("");
   const [PdfId, setPdfId] = useState(0);
 
   const [newFile, setFile] = useState({ profilePdf: "" });
@@ -215,7 +217,7 @@ function LatestCategory() {
           </div> */}
 
           <p className="Field ">
-            <h4>CurrentId---:{lastId.id}</h4>
+            {lastId && <h4>CurrentId---:{lastId.id}</h4>}
             <Box
               component="form"
               sx={{

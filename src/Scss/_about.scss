@@ -1,18 +1,18 @@
 .about-container {
-    width: 100%;
+    // width: 100vw;
     height: 100%;
     // border: 2px solid green;
     position: relative;
     background: #fff;
 
-    .container {
-        width: 100%;
-        height: 100vh;
+    .AboutUs-container {
+        width: 100vw !important;
+        height: 100%;
 
         // position: absolute;
         // top: 0;
         // left: 0;
-        margin: 0 auto;
+
         // border: 2px solid red;
 
         .mission {
@@ -24,6 +24,11 @@
             justify-content: center;
             text-align: center;
             align-items: center;
+            // border: 2px solid red;
+            // background: red;
+            width: 100%;
+            margin: 0 auto;
+
 
             @include for-mini-phone {
                 padding: 5px 0;
@@ -61,7 +66,7 @@
 
     .about-inner {
 
-        // border: 2px solid red;
+        // border: 2px solid blue;
         display: grid;
         grid-template-columns: 2fr 2fr;
         // flex-direction: row;

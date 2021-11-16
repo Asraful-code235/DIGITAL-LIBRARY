@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { items } from "./navItems";
 import { Link } from "react-router-dom";
-import { BsSearch } from "react-icons/bs";
 import axios from "axios";
 
 function FirstNav({ data }) {
@@ -32,13 +31,6 @@ function FirstNav({ data }) {
   const clearInput = () => {
     setWordEntered("");
   };
-  // const handelFilter = (e) => {
-  //   const searchWord = e.target.value;
-  //   const newFilter = bookList.filter((val) => {
-  //     return val.Title.toLowerCase().includes(searchWord.toLowerCase());
-  //   });
-  //   setFilteredData(newFilter);
-  // };
   return (
     <>
       <nav className={`Navbar-container ${isOpen ? "active" : ""}`}>
@@ -65,9 +57,6 @@ function FirstNav({ data }) {
                 </div>
               );
             })}
-            {/* <Link to="/signup">
-              <button className="signupFirst">Sign Up</button>
-            </Link> */}
           </ul>
           <div className="search">
             <div className="search-box-main">
@@ -89,7 +78,7 @@ function FirstNav({ data }) {
               <div className="dataResult">
                 {bookList
                   .filter((val) => {
-                    if (searchTerm == "") {
+                    if (searchTerm === "") {
                       return val;
                     } else if (
                       val.Category.toLowerCase().includes(
@@ -108,22 +97,7 @@ function FirstNav({ data }) {
                     return (
                       <div className="containerBooks" key={val.id}>
                         <Link to={`Books/${val.id}/${val.Category}`}>
-                          {/* <div className="imgContainer">
-                            <div className="book-grid">
-                              <img
-                                src={`http://localhost:3001/public/images/${val.image}`}
-                                alt="img"
-                              />
-                            </div>
-                          </div> */}
-                          {/* <div className="info"> */}
-                          {/* <div className="header"> */}
                           <h1 onClick={clearInput}>{val.Title}</h1>
-                          {/* </div> */}
-                          {/* <p>{val.Author}</p> */}
-                          {/* <p>Category:{val.Category}</p> */}
-                          {/* <div className="btn_container"></div> */}
-                          {/* </div> */}
                         </Link>
                       </div>
                     );

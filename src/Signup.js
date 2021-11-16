@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import "./css/main.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
-import Registration from "./Registration";
 import Login from "./Login";
-import ProtectedRoute from "./ProtectedRoute";
 
 function Signup() {
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth] = useState(true);
   return (
     <>
       <Router>

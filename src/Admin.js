@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { IoMdArrowDropdown } from "react-icons/io";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
 import { MdUpdate } from "react-icons/md";
 import { AiTwotoneDelete } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -99,33 +97,6 @@ function Admin() {
       );
     });
   };
-  const [title, setTitle] = useState("");
-  const [id, setId] = useState("");
-
-  const [newFile, setFile] = useState({ profilePdf: "" });
-  const pdfUpload = (e) => {
-    setFile({ ...newFile, profilePdf: e.target.files[0] });
-    console.log(e.target.files[0]);
-  };
-  const addPdfs = () => {
-    // console.log(input.profilePic, "==", input.profilePic.name);
-    const formdata = new FormData();
-    formdata.append("title", title);
-    formdata.append("id", id);
-    // formdata.append("category", category);
-    // formdata.append("price", price);
-    // formdata.append("myPdf", input.profilePic, input.profilePic.name);
-    formdata.append("myPdf", newFile.profilePdf, newFile.profilePdf.name);
-    // console.log("myfile", input.profilePic, input.profilePic.name);
-
-    // console.log(newFile.profilePdf, newFile.profilePdf.name);
-
-    axios.post("http://localhost:3001/pdf", formdata).then((res) => {
-      console.log("success");
-      // console.log(formdata);
-    });
-  };
-
   const [searchTermAdmin, setSearchTermAdmin] = useState("");
 
   // getBooks();

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
-import PdfViewer from "./PdfViewer";
-
 function ItemDetails({ match }) {
   //   const [id] = useParams();
   useEffect(() => {
@@ -79,22 +77,6 @@ function ItemDetails({ match }) {
         console.log("successful");
       });
   };
-
-  //get pdf
-  // const [pdfList, setPdfList] = useState([]);
-  // const getPdf = () => {
-  //   console.log("words");
-  //   axios
-  //     .get(
-  //       `http://localhost:3001/Books/${match.params.id}/Category
-  //       `
-  //     )
-  //     .then((response) => {
-  //       setPdfList(response.data[0]);
-
-  //       console.log(response.data[0]);
-  //     });
-  // };
   return (
     <div>
       <div className="itemDetails-container">

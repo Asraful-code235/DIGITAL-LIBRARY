@@ -1,5 +1,4 @@
 import React from "react";
-import FirstNav from "./FirstNav";
 import Footer from "./Footer";
 import Button from "@mui/material/Button";
 import { BsFacebook } from "react-icons/bs";
@@ -11,7 +10,6 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 function Subcription() {
   return (
     <div>
-      <FirstNav />
       <Subscribe />
       <Footer />
     </div>
@@ -51,7 +49,9 @@ const Subscribe = () => {
           </div>
         </div>
       </div>
-      <div className="image-container"></div>
+      <div className="image-container">
+        <img src="./mobile.PNG" alt="" />
+      </div>
     </div>
   );
 };

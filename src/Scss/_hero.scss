@@ -441,9 +441,9 @@ img {
 
         ul {
             li {
-                &:not(:nth-of-type(odd)) {
-                    background: rgba(0, 0, 0, 0.055);
-                }
+
+                border-bottom: rgba(0, 0, 0, 0.055);
+
             }
         }
 

@@ -1,27 +1,9 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import {
-  BrowserRouter as Routers,
-  Route,
-  useHistory,
-  Switch,
-} from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute";
-import Dashboard from "./Dashboard";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 function Login(props) {
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     login();
-  //   }
-  //   return () => {
-  //     // login();
-  //   };
-  // }, []);
   const history = useHistory();
-  const handelClick = () => {
-    history.push("/login");
-  };
   const [isFlip, setFlip] = useState(false);
   const handelFlip = () => {
     setFlip(!isFlip);
@@ -46,9 +28,8 @@ function Login(props) {
   const [email, setEmailReg] = useState("");
   const [password, setPasswordReg] = useState("");
   const [verified, setVerified] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
 
-  const [loginStatus, setLoginStatus] = useState([]);
+  // const [loginStatus, setLoginStatus] = useState([]);
 
   const login = () => {
     axios
@@ -59,11 +40,11 @@ function Login(props) {
       .then((response) => {
         if (response.data.message) {
           setVerified(true);
-          setLoginStatus(response.data.message);
+          // setLoginStatus(response.data.message);
           // console.log(response.data.message);
           // console.log(isAuth);
         } else {
-          setLoginStatus(response.data[0]);
+          // setLoginStatus(response.data[0]);
           // console.log(response.data[0].email);
           // console.log(response.data[0].password);
           // setIsAuth(isAuth);
@@ -75,10 +56,6 @@ function Login(props) {
         // console.log(loginStatus);
       });
   };
-
-  function refresh() {
-    window.location.reload(false);
-  }
   const [btnText, setBtnText] = useState("SIGN UP");
   const [headerText, setHeaderBtn] = useState("Dont have an account? ");
   const [btnParagraph, setBtnParagraph] = useState(

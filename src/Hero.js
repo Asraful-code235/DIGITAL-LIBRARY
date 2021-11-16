@@ -17,7 +17,7 @@ function Hero() {
   return (
     <>
       <section className="hero">
-        <div data-aos="fade-up" className="first-screen">
+        <div data-aos="fade-right" className="first-screen">
           <div className="first-floor">
             <div className="img-container">
               {/* <img src="./optimized-11.png" alt="" /> */}
@@ -41,7 +41,7 @@ const Component1 = () => {
     <>
       <div className="category-left">
         <div className="left-title">
-          <a href="">My Library</a>
+          <a href="/">My Library</a>
         </div>
 
         <div className="left-market">
@@ -77,7 +77,7 @@ const Component1 = () => {
               });
             }}
           >
-            <a href="#">
+            <a href="Books">
               <div id="thirdUnique" className={`category-item `}>
                 <div>
                   <span className="img">

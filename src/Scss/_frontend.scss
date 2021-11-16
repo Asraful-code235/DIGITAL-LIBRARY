@@ -1,0 +1,57 @@
+.frontend-cover {
+    background: #fdfdfd;
+    width: 85%;
+    margin: 0 auto;
+    height: 70vh;
+    // border: 2px solid red;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    // gap: 10px;
+    place-items: center;
+    justify-items: flex-start;
+
+    .information {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: start;
+        height: fit-content;
+        // border: 2px solid red;
+
+
+        margin-top: -50px;
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: rgb(212, 40, 135);
+            padding: 20px 0;
+        }
+
+        Button {
+            border: none;
+            border-left: 4px solid #1e7b85;
+            background: #fff;
+            color: #1e7b85;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 12px 75px;
+            // margin-top: 20px;
+            font-weight: 600;
+
+        }
+    }
+
+    .information-img {
+        width: 100%;
+        // height: max-content;
+
+        img {
+            object-fit: center;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+
+}

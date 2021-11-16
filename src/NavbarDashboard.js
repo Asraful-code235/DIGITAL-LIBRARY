@@ -7,17 +7,19 @@ const NavbarDashboard = ({ sidebarOpen, openSidebar }) => {
         <i className="fa fa-bars"></i>
       </div>
       <div className="navbar_left">
-        <a href="#">Book Management</a>
-        <a href="#" className="active_link">
+        <a href="/Dashboard/BookManagement" aria-disabled={true}>
+          Book Management
+        </a>
+        <a href="/Dashboard" aria-disabled={true} className="active_link">
           Admin
         </a>
       </div>
       <div className="navbar_right">
-        <a href="#">
+        <a href="/NOwhere">
           <i className="fa fa-search"></i>
         </a>
-        <a href="#" className="fa fa-clock-o"></a>
-        <a href="#">
+        <a href="/" className="fa fa-clock-o"></a>
+        <a href="/Nowhere">
           <img width="30px" src={women} alt="" />
         </a>
       </div>

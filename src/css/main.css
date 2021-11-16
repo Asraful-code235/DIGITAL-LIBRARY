@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;0,700;1,500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Festive&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Kaushan+Script&family=Montserrat:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Kaushan+Script&family=Nunito:wght@300;400;600;700&display=swap");
 * {
   margin: 0;
@@ -16,7 +17,6 @@ body {
   letter-spacing: 1px;
   line-height: 1.5;
   background: #fafbfd;
-  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -417,6 +417,7 @@ li {
   .NavbarItems .menu-icon .navbar-logo {
     width: 100%;
     height: 100%;
+    display: none;
   }
 }
 
@@ -424,9 +425,9 @@ li {
   color: rgba(221, 99, 18, 0.8);
   font-weight: 500;
   margin-left: 10px;
-  font-family: 'Kaushan Script', cursive;
+  font-family: 'Montserrat', sans-serif;
   letter-spacing: 2px;
-  margin-top: -2px;
+  font-size: 1.8rem;
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -992,8 +993,8 @@ img {
   z-index: 10;
 }
 
-.home-category .category-right .category-list ul li:not(:nth-of-type(odd)) {
-  background: rgba(0, 0, 0, 0.055);
+.home-category .category-right .category-list ul li {
+  border-bottom: rgba(0, 0, 0, 0.055);
 }
 
 .home-category .category-right .category-list.block {
@@ -1239,7 +1240,6 @@ img {
     width: 100%;
   }
   .info-container .info-grid {
-    border: 2px solid blue;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -2815,10 +2815,8 @@ main .card4 {
 }
 
 .GridContainer-admin .containerBook .imgContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   text-align: start;
 }
 
@@ -2835,10 +2833,11 @@ main .card4 {
 
 .GridContainer-admin .containerBook .imgContainer .info-header {
   margin-left: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   align-items: flex-start;
+  gap: 10px;
+  place-items: start;
   height: 80px;
 }
 
@@ -4017,19 +4016,17 @@ main .card4 {
 }
 
 .about-container {
-  width: 100%;
   height: 100%;
   position: relative;
   background: #fff;
 }
 
-.about-container .container {
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
+.about-container .AboutUs-container {
+  width: 100vw !important;
+  height: 100%;
 }
 
-.about-container .container .mission {
+.about-container .AboutUs-container .mission {
   background: rgba(0, 0, 0, 0.05);
   padding: 20px 0;
   display: flex;
@@ -4037,32 +4034,34 @@ main .card4 {
   justify-content: center;
   text-align: center;
   align-items: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
 @media only screen and (max-device-width: 480px) {
-  .about-container .container .mission {
+  .about-container .AboutUs-container .mission {
     padding: 5px 0;
   }
 }
 
-.about-container .container .mission h1 {
+.about-container .AboutUs-container .mission h1 {
   font-size: 36px;
   font-weight: 600;
   color: #1e7b85;
   padding: 40px;
 }
 
-.about-container .container .mission h1 span {
+.about-container .AboutUs-container .mission h1 span {
   color: #35d116;
 }
 
 @media only screen and (max-device-width: 480px) {
-  .about-container .container .mission h1 {
+  .about-container .AboutUs-container .mission h1 {
     font-size: 1.5rem;
   }
 }
 
-.about-container .container .mission h4 {
+.about-container .AboutUs-container .mission h4 {
   font-size: 26px;
   color: #1e7b85;
   font-weight: 400;
@@ -4070,7 +4069,7 @@ main .card4 {
 }
 
 @media only screen and (max-device-width: 480px) {
-  .about-container .container .mission h4 {
+  .about-container .AboutUs-container .mission h4 {
     font-size: 1rem;
   }
 }
@@ -5233,5 +5232,60 @@ body.backgroundBlur {
   width: 100%;
   height: 100%;
   background: linear-gradient(to top, rgba(17, 188, 211, 0.9), rgba(190, 34, 183, 0.6));
+  display: grid;
+  place-items: center;
+}
+
+.Subscribe-container .image-container img {
+  padding: 10px;
+  border-radius: 10% 20%/ 10%;
+}
+
+.frontend-cover {
+  background: #fdfdfd;
+  width: 85%;
+  margin: 0 auto;
+  height: 70vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  place-items: center;
+  justify-items: flex-start;
+}
+
+.frontend-cover .information {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: start;
+  height: fit-content;
+  margin-top: -50px;
+}
+
+.frontend-cover .information h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #d42887;
+  padding: 20px 0;
+}
+
+.frontend-cover .information Button {
+  border: none;
+  border-left: 4px solid #1e7b85;
+  background: #fff;
+  color: #1e7b85;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 12px 75px;
+  font-weight: 600;
+}
+
+.frontend-cover .information-img {
+  width: 100%;
+}
+
+.frontend-cover .information-img img {
+  object-fit: center;
+  width: 100%;
+  height: 100%;
 }
 /*# sourceMappingURL=main.css.map */

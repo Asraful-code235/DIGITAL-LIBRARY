@@ -14,7 +14,6 @@ function FirstHoverItems({ match }) {
   }, []);
   //   console.log(match.params);
   const [searchTerm, setSearchTerm] = useState("");
-  const [paramsId, setParamsId] = useState(0);
   const [getItems, setBookLists] = useState([]);
   const handelParams = () => {
     // setParamsId(match.params.id);
@@ -63,7 +62,7 @@ function FirstHoverItems({ match }) {
           <div className={`GridContainer-category `}>
             {getItems
               .filter((val) => {
-                if (searchTerm == "") {
+                if (searchTerm === "") {
                   return val;
                 } else if (
                   val.Category.toLowerCase().includes(searchTerm.toLowerCase())
