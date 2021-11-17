@@ -141,7 +141,7 @@ function Login(props) {
                 {/* </Link> */}
               </div>
               <div className="password-extract">
-                <h3>Forgot your password ?</h3>
+                {/* <h3>Forgot your password ?</h3> */}
               </div>
               {/* {loginStatus.map((loginStatus) => {
                   <h1>{loginStatus.email}</h1>;

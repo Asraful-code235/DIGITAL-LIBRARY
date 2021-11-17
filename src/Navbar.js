@@ -264,7 +264,7 @@ function Navbar() {
                     setUserPassword(e.target.value);
                   }}
                 />
-                <Link>Forgot your password?</Link>
+                {/* <Link>Forgot your password?</Link> */}
                 <button onClick={handelUserLogin}>Sign In</button>
               </form>
             </div>

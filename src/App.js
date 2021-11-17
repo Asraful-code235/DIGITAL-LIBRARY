@@ -18,6 +18,7 @@ import FirstHoverItems from "./FirstHoverItems";
 
 import PdfViewer from "./PdfViewer";
 import Subcription from "./Subcription";
+import Join from "./Join";
 function App(props) {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App(props) {
       {/* <Route path="/About" exact component={FirstNav} /> */}
       {/* <Route path="/Books/:id/:category/pdf" exact component={FirstNav} /> */}
       <Route path="/Subscription" exact component={Subcription} />
+      <Route path="/Join" exact component={Join} />
 
       {/* <Route path="/items" component={Navbar} /> */}
       <Route path="/view" exact component={PdfViewer} />

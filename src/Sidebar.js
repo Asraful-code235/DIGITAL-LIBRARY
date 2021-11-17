@@ -50,10 +50,10 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
             <p>Book Management</p>
           </div>
         </Link>
-        <div className="sidebar_link">
+        {/* <div className="sidebar_link">
           <i className="fa fa-question"></i>
           <p>Requests</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

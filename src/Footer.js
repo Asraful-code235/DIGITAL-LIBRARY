@@ -12,7 +12,9 @@ function Footer() {
           <Link to="/About" style={{ color: "black" }}>
             <li>About Digital Library</li>
           </Link>
-          <li>Join us</li>
+          <Link to="/Join">
+            <li>Join us</li>
+          </Link>
           <Link to="/Contact" style={{ color: "black" }}>
             <li>Contact Us</li>
           </Link>
