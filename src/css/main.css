@@ -3995,9 +3995,11 @@ main .card4 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 80px;
 }
 
 .about-container .download-info h2 {
+  display: none;
   color: #1e7b85;
   padding: 10px 20px;
 }
@@ -4008,7 +4010,7 @@ main .card4 {
   color: #fff;
   border: 1px solid #1e7b85;
   border-radius: 4px;
-  margin: 10px;
+  margin: 5px;
 }
 
 .about-container .download-info .download img {
@@ -5243,7 +5245,7 @@ body.backgroundBlur {
 
 .frontend-cover {
   background: #fdfdfd;
-  width: 85%;
+  width: 70%;
   margin: 0 auto;
   height: 70vh;
   display: grid;
